@@ -1,0 +1,6 @@
+{
+  "name": "Cuaderno de Entrenador",
+  "description": "Aplicación web moderna y responsive para gestionar un equipo de fútbol, jugadores, posiciones y fotos de perfil conectada a Supabase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
