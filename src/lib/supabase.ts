@@ -163,4 +163,28 @@ CREATE POLICY "Permitir lectura publica de informes" ON informes_post_partido
 
 CREATE POLICY "Permitir escritura completa de informes a autenticados" ON informes_post_partido
   FOR ALL TO authenticated USING (true) WITH CHECK (true);
+
+-- 7. CREAR LA TABLA DE RESUMEN DE LA TEMPORADA
+CREATE TABLE IF NOT EXISTS resumen_temporada_jugadores (
+  jugador_id UUID PRIMARY KEY REFERENCES jugadores(id) ON DELETE CASCADE,
+  nombre_completo VARCHAR(250) NOT NULL,
+  partidos_jugados INT DEFAULT 0 CHECK (partidos_jugados >= 0),
+  minutos_totales INT DEFAULT 0 CHECK (minutos_totales >= 0),
+  asistencias_totales INT DEFAULT 0 CHECK (asistencias_totales >= 0),
+  goles_totales INT DEFAULT 0 CHECK (goles_totales >= 0),
+  tarjetas_amarillas INT DEFAULT 0 CHECK (tarjetas_amarillas >= 0),
+  tarjetas_rojas INT DEFAULT 0 CHECK (tarjetas_rojas >= 0),
+  valoracion_media NUMERIC(4,2) DEFAULT 0.00 CHECK (valoracion_media >= 0.00 AND valoracion_media <= 10.00),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- ACTIVAR RLS
+ALTER TABLE resumen_temporada_jugadores ENABLE ROW LEVEL SECURITY;
+
+-- POLÍTICAS DE ACCESO
+CREATE POLICY "Permitir lectura publica de resumen_temporada" ON resumen_temporada_jugadores
+  FOR SELECT USING (true);
+
+CREATE POLICY "Permitir escritura completa de resumen_temporada a autenticados" ON resumen_temporada_jugadores
+  FOR ALL TO authenticated USING (true) WITH CHECK (true);
 `;

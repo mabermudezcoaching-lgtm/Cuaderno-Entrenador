@@ -617,11 +617,12 @@ export const exportPostMatchReportToPdf = (report: any) => {
   doc.setFontSize(8);
   doc.setTextColor(100, 116, 139); // slate-500
   doc.text('FUTBOLISTA / CONVOCADO', startX + 4, startY + 108);
-  doc.text('DEMARCACIÓN', startX + 60, startY + 108);
-  doc.text('MINUTOS', startX + 90, startY + 108);
-  doc.text('TARJETAS', startX + 115, startY + 108);
-  doc.text('GOLES', startX + 145, startY + 108);
-  doc.text('ASISTENCIAS', startX + 162, startY + 108);
+  doc.text('DEMARCACIÓN', startX + 54, startY + 108);
+  doc.text('MINUTOS', startX + 83, startY + 108);
+  doc.text('TARJETAS', startX + 104, startY + 108);
+  doc.text('GOLES', startX + 132, startY + 108);
+  doc.text('ASIST.', startX + 149, startY + 108);
+  doc.text('VALORAC.', startX + 165, startY + 108);
 
   doc.line(startX, startY + 111, startX + contentWidth, startY + 111);
 
@@ -643,10 +644,10 @@ export const exportPostMatchReportToPdf = (report: any) => {
     doc.setFont('Helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(71, 85, 105); // slate-600
-    doc.text(rend.posicion, startX + 60, currentY);
+    doc.text(rend.posicion, startX + 54, currentY);
 
     doc.setFont('Helvetica', 'bold');
-    doc.text(`${rend.minutos || 0}'`, startX + 90, currentY);
+    doc.text(`${rend.minutos || 0}'`, startX + 83, currentY);
 
     // Cards styling / labels
     if (rend.tarjetas && rend.tarjetas !== 'Ninguna') {
@@ -658,30 +659,42 @@ export const exportPostMatchReportToPdf = (report: any) => {
       } else {
         doc.setTextColor(217, 119, 6); // yellow-600
       }
-      doc.text(rend.tarjetas, startX + 115, currentY);
+      doc.text(rend.tarjetas, startX + 104, currentY);
     } else {
       doc.setFont('Helvetica', 'normal');
       doc.setTextColor(148, 163, 184); // slate-400
-      doc.text('-', startX + 115, currentY);
+      doc.text('-', startX + 104, currentY);
     }
 
     // Goals & Assists indicators
     doc.setFont('Helvetica', 'bold');
     if (rend.goles > 0) {
       doc.setTextColor(22, 163, 74); // green-600
-      doc.text(`${rend.goles}`, startX + 145, currentY);
+      doc.text(`${rend.goles}`, startX + 132, currentY);
     } else {
       doc.setTextColor(148, 163, 184);
-      doc.text('0', startX + 145, currentY);
+      doc.text('0', startX + 132, currentY);
     }
 
     if (rend.asistencias > 0) {
       doc.setTextColor(37, 99, 235); // blue-600
-      doc.text(`${rend.asistencias}`, startX + 162, currentY);
+      doc.text(`${rend.asistencias}`, startX + 149, currentY);
     } else {
       doc.setTextColor(148, 163, 184);
-      doc.text('0', startX + 162, currentY);
+      doc.text('0', startX + 149, currentY);
     }
+
+    // Valoracion score
+    const valFloat = rend.valoracion !== undefined ? Number(rend.valoracion) : 6.0;
+    if (valFloat >= 7.5) {
+      doc.setTextColor(16, 185, 129); // emerald-550
+    } else if (valFloat < 5.0) {
+      doc.setTextColor(239, 68, 68); // rose-500
+    } else {
+      doc.setTextColor(31, 41, 55); // gray-800
+    }
+    doc.setFont('Helvetica', 'bold');
+    doc.text(valFloat.toFixed(1), startX + 165, currentY);
 
     currentY += 7.2;
   });

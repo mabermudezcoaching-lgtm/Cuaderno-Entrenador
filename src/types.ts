@@ -51,6 +51,20 @@ export interface JugadorRendimiento {
   tarjetas: 'Ninguna' | 'Amarilla' | 'Roja' | 'Doble Amarilla';
   goles: number;
   asistencias: number;
+  valoracion: number; // Player's individual rating (0 - 10)
+}
+
+export interface ResumenTemporadaJugador {
+  jugador_id: string;
+  nombre_completo: string;
+  partidos_jugados: number;
+  minutos_totales: number;
+  asistencias_totales: number;
+  goles_totales: number;
+  tarjetas_amarillas: number;
+  tarjetas_rojas: number;
+  valoracion_media: number;
+  updated_at?: string;
 }
 
 export interface InformePostPartido {
