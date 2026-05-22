@@ -18,6 +18,7 @@ import StatsDashboard from './components/StatsDashboard';
 import PlayerCard from './components/PlayerCard';
 import PlayerForm from './components/PlayerForm';
 import AuthModal from './components/AuthModal';
+import { exportPlayerToPdf } from './lib/pdfExport';
 import { 
   Users, 
   Plus, 
@@ -33,7 +34,11 @@ import {
   Calendar,
   Shield,
   Pocket,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Eye,
+  FileDown,
+  X,
+  Sparkles
 } from 'lucide-react';
 
 export default function App() {
@@ -54,6 +59,7 @@ export default function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [editingPlayer, setEditingPlayer] = useState<Jugador | undefined>(undefined);
+  const [previewPlayer, setPreviewPlayer] = useState<Jugador | null>(null);
 
   // Authentication states
   const [currentUser, setCurrentUser] = useState<any>(null);
@@ -476,6 +482,7 @@ export default function App() {
                     isAdmin={!!currentUser}
                     onEdit={handleEditClick}
                     onDelete={handleDeletePlayer}
+                    onPreview={setPreviewPlayer}
                   />
                 </motion.div>
               ))}
@@ -495,6 +502,8 @@ export default function App() {
                     <td className="p-3.5 font-display">Lado</td>
                     <td className="p-3.5 font-display">Procedencia</td>
                     <td className="p-3.5 font-display text-slate-400">Breve Scout</td>
+                    <td className="p-3.5 font-display text-slate-400">Rendimiento</td>
+                    <td className="p-3.5 text-center font-display w-24">Ficha</td>
                     {currentUser && <td className="p-3.5 text-center w-28 font-display">Acciones</td>}
                   </tr>
                 </thead>
@@ -524,6 +533,34 @@ export default function App() {
                       </td>
                       <td className="p-3.5 italic text-slate-400 max-w-xs truncate" title={player.observaciones}>
                         "{player.observaciones || 'Sin observaciones registrado.'}"
+                      </td>
+                      {/* Atributos en tabla */}
+                      <td className="p-3.5 text-[10px] whitespace-nowrap">
+                        <div className="flex flex-col gap-0.5 font-mono">
+                          <span>Vel: <strong className="text-blue-400">{player.velocidad ?? 3}</strong> | Téc: <strong className="text-blue-400">{player.tecnica ?? 3}</strong></span>
+                          <span>Def: <strong className="text-blue-400">{player.defensa ?? 3}</strong> | Act: <strong className="text-blue-400">{player.actitud ?? 3}</strong></span>
+                        </div>
+                      </td>
+                      {/* Botones de Vista previa y PDF */}
+                      <td className="p-3.5 text-center">
+                        <div className="flex justify-center items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => setPreviewPlayer(player)}
+                            className="text-blue-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg p-1.5 transition-colors cursor-pointer border border-slate-800"
+                            title="Ver Ficha"
+                          >
+                            <Eye className="h-3.5 w-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => exportPlayerToPdf(player)}
+                            className="text-green-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg p-1.5 transition-colors cursor-pointer border border-slate-800"
+                            title="Exportar PDF"
+                          >
+                            <FileDown className="h-3.5 w-3.5" />
+                          </button>
+                        </div>
                       </td>
                       {currentUser && (
                         <td className="p-3.5 text-center">
@@ -585,6 +622,160 @@ export default function App() {
             }}
             onSave={handleSavePlayer}
           />
+        )}
+
+        {/* 6. Vista Previa de Ficha Modal */}
+        {previewPlayer && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col my-8"
+            >
+              {/* Header */}
+              <div className="px-5 py-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Award className="h-5 w-5 text-blue-400" />
+                  <span className="text-xs font-black text-slate-300 uppercase tracking-widest font-mono">
+                    Vista Previa de la Ficha
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPreviewPlayer(null)}
+                  className="text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-850 p-1.5 rounded-lg border border-slate-800 cursor-pointer transition-colors"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Card Main Body */}
+              <div className="p-6 space-y-5 overflow-y-auto max-h-[65vh]">
+                {/* Visual Top block */}
+                <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start pb-5 border-b border-slate-850">
+                  <div className="h-24 w-24 rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shrink-0 flex items-center justify-center">
+                    {previewPlayer.foto_jugador ? (
+                      <img
+                        src={previewPlayer.foto_jugador}
+                        alt={`${previewPlayer.nombre} ${previewPlayer.apellidos}`}
+                        referrerPolicy="no-referrer"
+                        className="h-full w-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <span className="text-2xl font-black text-blue-400">
+                        #{previewPlayer.dorsal}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-center sm:text-left space-y-1">
+                    <span className="inline-flex px-2 py-0.5 rounded bg-blue-950/50 border border-blue-900/40 text-blue-400 text-[10px] uppercase font-black tracking-widest font-mono">
+                      #{previewPlayer.dorsal} - {previewPlayer.demarcacion}
+                    </span>
+                    <h2 className="text-xl font-black text-white leading-tight font-display">
+                      {previewPlayer.nombre} <span className="text-slate-400 font-normal">{previewPlayer.apellidos}</span>
+                    </h2>
+                    <p className="text-xs font-bold text-slate-500 font-mono uppercase tracking-wide">
+                      {previewPlayer.equipo}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Facts Grid */}
+                <div className="grid grid-cols-2 gap-4 bg-slate-950/40 border border-slate-855 p-4 rounded-xl text-xs font-medium">
+                  <div>
+                    <span className="text-slate-500 block text-[9px] uppercase tracking-wider font-mono">Nacimiento / Edad</span>
+                    <span className="text-slate-200">{previewPlayer.fecha_nacimiento}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 block text-[9px] uppercase tracking-wider font-mono">Pie dominante</span>
+                    <span className="text-blue-400 font-bold uppercase">{previewPlayer.lateralidad}</span>
+                  </div>
+                  <div className="col-span-2 border-t border-slate-850/60 pt-2.5 mt-1.5">
+                    <span className="text-slate-500 block text-[9px] uppercase tracking-wider font-mono">Identificador de Ficha</span>
+                    <span className="font-mono text-[10px] text-slate-400">{previewPlayer.id}</span>
+                  </div>
+                </div>
+
+                {/* Technical / Physical stats attributes (Quantitative Bars) */}
+                <div className="space-y-2.5">
+                  <span className="text-[10px] font-black tracking-widest uppercase text-slate-405 font-mono block">
+                    Atributos y Habilidades
+                  </span>
+                  
+                  {[
+                    { label: 'Velocidad / Ritmo', val: previewPlayer.velocidad ?? 3 },
+                    { label: 'Remate / Finalización', val: previewPlayer.remate ?? 3 },
+                    { label: 'Pase / Asociación', val: previewPlayer.pase ?? 3 },
+                    { label: 'Técnica / Control', val: previewPlayer.tecnica ?? 3 },
+                    { label: 'Defensa / Entrada', val: previewPlayer.defensa ?? 3 },
+                    { label: 'Actitud / Compromiso', val: previewPlayer.actitud ?? 3 },
+                  ].map((attr, key) => (
+                    <div key={key} className="space-y-1 bg-slate-950/20 p-2 border border-slate-850/30 rounded-xl">
+                      <div className="flex justify-between items-center text-xs font-mono">
+                        <span className="text-slate-300 font-bold text-[11px]">{attr.label}</span>
+                        <span className="text-blue-400 font-black">{attr.val} / 5</span>
+                      </div>
+                      
+                      {/* Visual segment progress bar (representing 5 notches) */}
+                      <div className="grid grid-cols-5 gap-1.5 h-2">
+                        {[1, 2, 3, 4, 5].map((notch) => (
+                          <div
+                            key={notch}
+                            className={`h-full rounded transition-all duration-300 ${
+                              notch <= attr.val
+                                ? 'bg-gradient-to-r from-blue-600 to-blue-500 shadow-sm shadow-blue-500/10'
+                                : 'bg-slate-800'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Observations text */}
+                {previewPlayer.observaciones && (
+                  <div className="bg-slate-950/60 border border-slate-850 p-4 rounded-xl">
+                    <span className="text-[9px] uppercase font-black text-slate-500 tracking-wider block font-mono mb-1.5">
+                      Observaciones de Seguimiento
+                    </span>
+                    <p className="text-xs text-slate-300 italic font-mono leading-relaxed">
+                      "{previewPlayer.observaciones}"
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Footer Actions */}
+              <div className="px-6 py-4 bg-slate-950 border-t border-slate-800 flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => exportPlayerToPdf(previewPlayer)}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-bold tracking-wider text-white bg-blue-600 hover:bg-blue-500 rounded-xl py-3 border border-blue-500 hover:shadow-lg transition-colors cursor-pointer select-none uppercase"
+                >
+                  <FileDown className="h-4 w-4" />
+                  Descargar Ficha PDF
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPreviewPlayer(null)}
+                  className="px-5 inline-flex items-center justify-center text-xs font-bold tracking-wider text-slate-300 hover:text-white bg-slate-905 hover:bg-slate-850 border border-slate-800 rounded-xl py-3 transition-colors cursor-pointer"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 

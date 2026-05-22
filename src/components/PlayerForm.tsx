@@ -23,6 +23,39 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
   const [fotoJugador, setFotoJugador] = useState(player?.foto_jugador || '');
   const [observaciones, setObservaciones] = useState(player?.observaciones || '');
 
+  // Atributos cuantitativos
+  const [velocidad, setVelocidad] = useState<number>(player?.velocidad ?? 3);
+  const [remate, setRemate] = useState<number>(player?.remate ?? 3);
+  const [pase, setPase] = useState<number>(player?.pase ?? 3);
+  const [tecnica, setTecnica] = useState<number>(player?.tecnica ?? 3);
+  const [defensa, setDefensa] = useState<number>(player?.defensa ?? 3);
+  const [actitud, setActitud] = useState<number>(player?.actitud ?? 3);
+
+  // Helper template for attribute selector
+  const renderRatingSelector = (label: string, value: number, onChange: (val: number) => void) => {
+    return (
+      <div className="flex items-center justify-between gap-4 p-2.5 bg-slate-950 border border-slate-850 rounded-xl">
+        <span className="text-xs font-bold text-slate-350 uppercase tracking-widest font-mono">{label}</span>
+        <div className="flex gap-1 shrink-0">
+          {[1, 2, 3, 4, 5].map((num) => (
+            <button
+              key={num}
+              type="button"
+              onClick={() => onChange(num)}
+              className={`w-7 h-7 rounded-lg text-xs font-black transition-all cursor-pointer border flex items-center justify-center ${
+                value === num
+                  ? 'bg-blue-600 text-white border-blue-500 shadow-lg shadow-blue-950 scale-110'
+                  : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white hover:bg-slate-850'
+              }`}
+            >
+              {num}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   // Form states
   const [isDragging, setIsDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -130,6 +163,12 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
       equipo: equipo.trim(),
       foto_jugador: fotoJugador,
       observaciones: observaciones.trim(),
+      velocidad,
+      remate,
+      pase,
+      tecnica,
+      defensa,
+      actitud,
     });
 
     onClose();
@@ -278,6 +317,24 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 onChange={(e) => setEquipo(e.target.value)}
                 className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium"
               />
+            </div>
+          </div>
+
+          {/* Atributos Cuantitativos */}
+          <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl space-y-3.5">
+            <div className="flex items-center gap-1.5 border-b border-slate-850 pb-2">
+              <Sparkles className="h-4 w-4 text-blue-500" />
+              <h3 className="text-xs font-black text-white uppercase tracking-wider font-display">
+                Ficha de Rendimiento Cuantitativo (1 al 5)
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {renderRatingSelector('Velocidad / Ritmo', velocidad, setVelocidad)}
+              {renderRatingSelector('Remate / Finalización', remate, setRemate)}
+              {renderRatingSelector('Pase / Asociación', pase, setPase)}
+              {renderRatingSelector('Técnica / Control', tecnica, setTecnica)}
+              {renderRatingSelector('Defensa / Entrada', defensa, setDefensa)}
+              {renderRatingSelector('Actitud / Compromiso', actitud, setActitud)}
             </div>
           </div>
 

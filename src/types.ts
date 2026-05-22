@@ -10,6 +10,13 @@ export interface Jugador {
   foto_jugador: string;
   observaciones: string;
   created_at: string;
+  // Atributos cuantitativos (1 al 5)
+  velocidad: number;
+  remate: number;
+  pase: number;
+  tecnica: number;
+  defensa: number;
+  actitud: number;
 }
 
 export interface SupabaseConfigState {

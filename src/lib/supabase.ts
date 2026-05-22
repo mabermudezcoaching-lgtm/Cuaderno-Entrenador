@@ -84,6 +84,12 @@ CREATE TABLE jugadores (
   equipo VARCHAR(150) NOT NULL,
   foto_jugador TEXT,
   observaciones TEXT,
+  velocidad INT DEFAULT 3 CHECK (velocidad >= 1 AND velocidad <= 5),
+  remate INT DEFAULT 3 CHECK (remate >= 1 AND remate <= 5),
+  pase INT DEFAULT 3 CHECK (pase >= 1 AND pase <= 5),
+  tecnica INT DEFAULT 3 CHECK (tecnica >= 1 AND tecnica <= 5),
+  defensa INT DEFAULT 3 CHECK (defensa >= 1 AND defensa <= 5),
+  actitud INT DEFAULT 3 CHECK (actitud >= 1 AND actitud <= 5),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
 );
 

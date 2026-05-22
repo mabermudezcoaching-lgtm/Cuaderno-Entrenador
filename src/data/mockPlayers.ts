@@ -1,6 +1,6 @@
 import { Jugador } from '../types';
 
-export const 	MOCK_PLAYERS: Jugador[] = [
+export const MOCK_PLAYERS: Jugador[] = [
   {
     id: 'p1',
     nombre: 'Marc-André',
@@ -12,7 +12,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'FC Barcelona',
     foto_jugador: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Capitán del equipo. Excelente juego de pies y reflejos bajo palos.',
-    created_at: '2026-05-21T15:00:00Z'
+    created_at: '2026-05-21T15:00:00Z',
+    velocidad: 3,
+    remate: 1,
+    pase: 5,
+    tecnica: 4,
+    defensa: 2,
+    actitud: 4
   },
   {
     id: 'p2',
@@ -25,7 +31,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Lateral derecho con gran experiencia y carácter competitivo. Muy fuerte en el uno contra uno.',
-    created_at: '2026-05-21T15:01:00Z'
+    created_at: '2026-05-21T15:01:00Z',
+    velocidad: 4,
+    remate: 2,
+    pase: 3,
+    tecnica: 3,
+    defensa: 5,
+    actitud: 5
   },
   {
     id: 'p3',
@@ -38,7 +50,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'FC Barcelona',
     foto_jugador: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Central con gran poder físico y velocidad de anticipación. Líder defensivo de la zaga.',
-    created_at: '2026-05-21T15:02:00Z'
+    created_at: '2026-05-21T15:02:00Z',
+    velocidad: 4,
+    remate: 2,
+    pase: 3,
+    tecnica: 3,
+    defensa: 5,
+    actitud: 5
   },
   {
     id: 'p4',
@@ -51,7 +69,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Central agresivo e implacable en el juego aéreo. Excelente salida de balón.',
-    created_at: '2026-05-21T15:03:00Z'
+    created_at: '2026-05-21T15:03:00Z',
+    velocidad: 4,
+    remate: 2,
+    pase: 3,
+    tecnica: 3,
+    defensa: 5,
+    actitud: 5
   },
   {
     id: 'p5',
@@ -64,7 +88,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Lateral izquierdo con un gran despliegue defensivo y solvencia en duelos rápidos.',
-    created_at: '2026-05-21T15:04:00Z'
+    created_at: '2026-05-21T15:04:00Z',
+    velocidad: 4,
+    remate: 2,
+    pase: 3,
+    tecnica: 2,
+    defensa: 5,
+    actitud: 4
   },
   {
     id: 'p6',
@@ -77,7 +107,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'FC Barcelona',
     foto_jugador: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Defensa polivalente que puede jugar tanto de central como de lateral derecho.',
-    created_at: '2026-05-21T15:05:00Z'
+    created_at: '2026-05-21T15:05:00Z',
+    velocidad: 4,
+    remate: 2,
+    pase: 3,
+    tecnica: 3,
+    defensa: 4,
+    actitud: 4
   },
   {
     id: 'p7',
@@ -90,7 +126,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Atlético de Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Central de gran garra, domina el juego aéreo defensivo y ofensivo.',
-    created_at: '2026-05-21T15:06:00Z'
+    created_at: '2026-05-21T15:06:00Z',
+    velocidad: 3,
+    remate: 2,
+    pase: 2,
+    tecnica: 2,
+    defensa: 5,
+    actitud: 5
   },
   {
     id: 'p8',
@@ -103,7 +145,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Atlético de Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Central muy inteligente tácticamente. Excelente posicionamiento y coberturas.',
-    created_at: '2026-05-21T15:07:00Z'
+    created_at: '2026-05-21T15:07:00Z',
+    velocidad: 3,
+    remate: 2,
+    pase: 3,
+    tecnica: 3,
+    defensa: 4,
+    actitud: 4
   },
   {
     id: 'p9',
@@ -116,7 +164,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'FC Barcelona',
     foto_jugador: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Creador de juego. Visión periférica y conducción de balón excepcional para romper líneas.',
-    created_at: '2026-05-21T15:08:00Z'
+    created_at: '2026-05-21T15:08:00Z',
+    velocidad: 3,
+    remate: 3,
+    pase: 5,
+    tecnica: 5,
+    defensa: 3,
+    actitud: 4
   },
   {
     id: 'p10',
@@ -129,7 +183,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Mediocampista "box-to-box" con gran despliegue físico y un potente disparo lejano.',
-    created_at: '2026-05-21T15:09:00Z'
+    created_at: '2026-05-21T15:09:00Z',
+    velocidad: 5,
+    remate: 4,
+    pase: 4,
+    tecnica: 4,
+    defensa: 4,
+    actitud: 5
   },
   {
     id: 'p11',
@@ -142,7 +202,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Llegador nato de segunda línea. Físico imponente, calidad técnica y gran cuota goleadora.',
-    created_at: '2026-05-21T15:10:00Z'
+    created_at: '2026-05-21T15:10:00Z',
+    velocidad: 4,
+    remate: 5,
+    pase: 4,
+    tecnica: 5,
+    defensa: 4,
+    actitud: 5
   },
   {
     id: 'p12',
@@ -155,7 +221,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'FC Barcelona',
     foto_jugador: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Talento puro. Capacidad única para esconder el balón y filtrar pases entre las líneas defensivas.',
-    created_at: '2026-05-21T15:11:00Z'
+    created_at: '2026-05-21T15:11:00Z',
+    velocidad: 3,
+    remate: 3,
+    pase: 5,
+    tecnica: 5,
+    defensa: 3,
+    actitud: 4
   },
   {
     id: 'p13',
@@ -168,7 +240,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Atlético de Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1489980508314-941910ded1f4?auto=format&fit=crop&q=80&w=200',
     observaciones: 'El cerebro y motor táctico del mediocampo. Gran visión espacial y precisión a balón parado.',
-    created_at: '2026-05-21T15:12:00Z'
+    created_at: '2026-05-21T15:12:00Z',
+    velocidad: 3,
+    remate: 3,
+    pase: 4,
+    tecnica: 4,
+    defensa: 4,
+    actitud: 5
   },
   {
     id: 'p14',
@@ -181,7 +259,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Sociedad',
     foto_jugador: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Pivote defensivo ordenado, seguro con el balón bajo presión y excelente en el robo.',
-    created_at: '2026-05-21T15:13:00Z'
+    created_at: '2026-05-21T15:13:00Z',
+    velocidad: 3,
+    remate: 2,
+    pase: 4,
+    tecnica: 4,
+    defensa: 4,
+    actitud: 4
   },
   {
     id: 'p15',
@@ -194,7 +278,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Betis',
     foto_jugador: 'https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Extrema calidad asociativa, virtuoso del regate corto y pases de gol inesperados.',
-    created_at: '2026-05-21T15:14:00Z'
+    created_at: '2026-05-21T15:14:00Z',
+    velocidad: 3,
+    remate: 4,
+    pase: 5,
+    tecnica: 5,
+    defensa: 2,
+    actitud: 4
   },
   {
     id: 'p16',
@@ -207,7 +297,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Real Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Desborde y velocidad mundial por banda izquierda. Muy letal en el regate en carrera.',
-    created_at: '2026-05-21T15:15:00Z'
+    created_at: '2026-05-21T15:15:00Z',
+    velocidad: 5,
+    remate: 5,
+    pase: 4,
+    tecnica: 5,
+    defensa: 2,
+    actitud: 5
   },
   {
     id: 'p17',
@@ -220,20 +316,32 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Atlético de Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Delantero total con excelente toma de decisiones, asiste, golea y apoya en fase defensiva.',
-    created_at: '2026-05-21T15:16:00Z'
+    created_at: '2026-05-21T15:16:00Z',
+    velocidad: 4,
+    remate: 4,
+    pase: 5,
+    tecnica: 5,
+    defensa: 3,
+    actitud: 5
   },
   {
     id: 'p18',
     nombre: 'Robert',
     apellidos: 'Lewandowski',
     dorsal: 9,
-    fecha_nacimiento: '1888-08-21', // corrected to 1988
+    fecha_nacimiento: '1988-08-21',
     demarcacion: 'Delantero',
     lateralidad: 'Diestro',
     equipo: 'FC Barcelona',
     foto_jugador: 'https://images.unsplash.com/photo-1521151716396-b2da27b1a19f?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Goleador de área clásico, juego de espaldas superlativo y letal finalización táctica.',
-    created_at: '2026-05-21T15:17:00Z'
+    created_at: '2026-05-21T15:17:00Z',
+    velocidad: 3,
+    remate: 5,
+    pase: 3,
+    tecnica: 4,
+    defensa: 2,
+    actitud: 4
   },
   {
     id: 'p19',
@@ -246,7 +354,13 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Athletic Club',
     foto_jugador: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Extremo derecho desequilibrante con gran potencia, regate hábil y fantástico disparo cruzado.',
-    created_at: '2026-05-21T15:18:00Z'
+    created_at: '2026-05-21T15:18:00Z',
+    velocidad: 5,
+    remate: 4,
+    pase: 4,
+    tecnica: 4,
+    defensa: 2,
+    actitud: 4
   },
   {
     id: 'p20',
@@ -259,9 +373,12 @@ export const 	MOCK_PLAYERS: Jugador[] = [
     equipo: 'Atlético de Madrid',
     foto_jugador: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?auto=format&fit=crop&q=80&w=200',
     observaciones: 'Seguridad aérea insuperable. Uno de los porteros más sobrios y regulares de la historia.',
-    created_at: '2026-05-21T15:19:00Z'
+    created_at: '2026-05-21T15:19:00Z',
+    velocidad: 3,
+    remate: 1,
+    pase: 3,
+    tecnica: 3,
+    defensa: 2,
+    actitud: 4
   }
 ];
-
-// Correct Lewandowski's year of birth to 1988
-MOCK_PLAYERS[17].fecha_nacimiento = '1988-08-21';

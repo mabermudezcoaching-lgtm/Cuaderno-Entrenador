@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Jugador } from '../types';
-import { Shield, MapPin, Calendar, HelpCircle, Pocket, Trash2, Edit2, ShieldAlert } from 'lucide-react';
+import { Shield, MapPin, Calendar, HelpCircle, Pocket, Trash2, Edit2, ShieldAlert, Eye, FileDown, Sparkles } from 'lucide-react';
+import { exportPlayerToPdf } from '../lib/pdfExport';
 
 interface PlayerCardProps {
   player: Jugador;
   isAdmin: boolean;
   onEdit: (player: Jugador) => void;
   onDelete: (id: string) => void;
+  onPreview: (player: Jugador) => void;
 }
 
-export default function PlayerCard({ player, isAdmin, onEdit, onDelete }: PlayerCardProps) {
+export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPreview }: PlayerCardProps) {
   const [imageError, setImageError] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
@@ -46,6 +48,22 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete }: Player
     const fn = player.nombre.charAt(0) || '';
     const ln = player.apellidos.charAt(0) || '';
     return `${fn}${ln}`.toUpperCase();
+  };
+
+  // Helper to render mini attribute notch progress bar
+  const renderMiniBar = (val: number) => {
+    return (
+      <div className="flex gap-0.5 items-center">
+        {[1, 2, 3, 4, 5].map((idx) => (
+          <div
+            key={idx}
+            className={`h-1.5 w-2 rounded-[1px] transition-colors ${
+              idx <= val ? 'bg-blue-500' : 'bg-slate-800'
+            }`}
+          />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -124,6 +142,39 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete }: Player
           </div>
         </div>
 
+        {/* Atributos del Jugador */}
+        <div className="mt-3.5 bg-slate-900 border border-slate-850/60 rounded-xl p-3 space-y-2">
+          <span className="text-[9px] uppercase font-bold text-slate-500 block font-display tracking-widest border-b border-slate-800 pb-1.5 flex items-center gap-1">
+            <Sparkles className="h-3 w-3 text-blue-400" /> Rendimiento Técnico / Físico
+          </span>
+          <div className="grid grid-cols-2 gap-x-3.5 gap-y-1.5 text-[10px] font-mono leading-none">
+            <div className="flex justify-between items-center bg-slate-950/20 p-1 rounded">
+              <span className="text-slate-400 font-semibold">Velocidad:</span>
+              {renderMiniBar(player.velocidad ?? 3)}
+            </div>
+            <div className="flex justify-between items-center bg-slate-950/20 p-1 rounded">
+              <span className="text-slate-400 font-semibold">Remate:</span>
+              {renderMiniBar(player.remate ?? 3)}
+            </div>
+            <div className="flex justify-between items-center bg-slate-950/20 p-1 rounded">
+              <span className="text-slate-400 font-semibold">Pase:</span>
+              {renderMiniBar(player.pase ?? 3)}
+            </div>
+            <div className="flex justify-between items-center bg-slate-950/20 p-1 rounded">
+              <span className="text-slate-400 font-semibold">Técnica:</span>
+              {renderMiniBar(player.tecnica ?? 3)}
+            </div>
+            <div className="flex justify-between items-center bg-slate-950/20 p-1 rounded">
+              <span className="text-slate-400 font-semibold">Defensa:</span>
+              {renderMiniBar(player.defensa ?? 3)}
+            </div>
+            <div className="flex justify-between items-center bg-slate-950/20 p-1 rounded">
+              <span className="text-slate-400 font-semibold">Actitud:</span>
+              {renderMiniBar(player.actitud ?? 3)}
+            </div>
+          </div>
+        </div>
+
         {/* Observaciones */}
         {player.observaciones && (
           <div className="mt-3 bg-slate-900 rounded-lg p-3 border border-slate-850">
@@ -133,6 +184,26 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete }: Player
             </p>
           </div>
         )}
+
+        {/* Botones de Ficha y Exportación PDF */}
+        <div className="mt-3.5 grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={() => onPreview(player)}
+            className="inline-flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900 hover:bg-slate-850 border border-slate-800 rounded-lg py-2 transition-all cursor-pointer hover:shadow-md"
+          >
+            <Eye className="h-3.5 w-3.5 text-blue-400" />
+            Ver Ficha
+          </button>
+          <button
+            type="button"
+            onClick={() => exportPlayerToPdf(player)}
+            className="inline-flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900 hover:bg-slate-850 border border-slate-800 rounded-lg py-2 transition-all cursor-pointer hover:shadow-md"
+          >
+            <FileDown className="h-3.5 w-3.5 text-green-400" />
+            Pdf Ficha
+          </button>
+        </div>
 
         {/* Admin Actions */}
         {isAdmin && (
