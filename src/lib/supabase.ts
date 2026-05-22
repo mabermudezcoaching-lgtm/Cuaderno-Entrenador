@@ -139,4 +139,28 @@ CREATE POLICY "Permitir lectura publica de videos" ON video_analisis
 
 CREATE POLICY "Permitir escritura completa de videos a autenticados" ON video_analisis
   FOR ALL TO authenticated USING (true) WITH CHECK (true);
+
+-- 6. CREAR LA TABLA DE INFORMES POST PARTIDO
+CREATE TABLE IF NOT EXISTS informes_post_partido (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  equipo_local VARCHAR(150) NOT NULL,
+  equipo_visitante VARCHAR(150) NOT NULL,
+  campo VARCHAR(150) NOT NULL,
+  fecha DATE NOT NULL,
+  hora TIME NOT NULL,
+  resumen TEXT,
+  valoracion_global INT DEFAULT 3 CHECK (valoracion_global >= 1 AND valoracion_global <= 5),
+  rendimientos JSONB DEFAULT '[]'::jsonb NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- ACTIVAR RLS
+ALTER TABLE informes_post_partido ENABLE ROW LEVEL SECURITY;
+
+-- POLÍTICAS DE ACCESO
+CREATE POLICY "Permitir lectura publica de informes" ON informes_post_partido
+  FOR SELECT USING (true);
+
+CREATE POLICY "Permitir escritura completa de informes a autenticados" ON informes_post_partido
+  FOR ALL TO authenticated USING (true) WITH CHECK (true);
 `;

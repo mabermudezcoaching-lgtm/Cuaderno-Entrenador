@@ -42,3 +42,27 @@ export interface VideoAnalisis {
   descripcion: string;
   created_at: string;
 }
+
+export interface JugadorRendimiento {
+  jugador_id: string;
+  nombre_completo: string;
+  posicion: string;
+  minutos: number;
+  tarjetas: 'Ninguna' | 'Amarilla' | 'Roja' | 'Doble Amarilla';
+  goles: number;
+  asistencias: number;
+}
+
+export interface InformePostPartido {
+  id: string;
+  equipo_local: string;
+  equipo_visitante: string;
+  campo: string;
+  fecha: string;
+  hora: string;
+  resumen: string;
+  valoracion_global: number; // 1 to 5 stars
+  rendimientos: JugadorRendimiento[];
+  created_at: string;
+}
+

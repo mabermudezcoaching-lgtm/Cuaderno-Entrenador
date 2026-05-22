@@ -527,3 +527,178 @@ export const exportTacticalBoardToPdf = (
   doc.save(filename);
 };
 
+export const exportPostMatchReportToPdf = (report: any) => {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4'
+  });
+
+  const startX = 15;
+  const startY = 15;
+  const contentWidth = 180;
+
+  // Header Banner with Slate-900 Theme
+  doc.setFillColor(15, 23, 42); // slate-900
+  doc.roundedRect(startX, startY, contentWidth, 26, 3, 3, 'F');
+
+  // Title of report
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(96, 165, 250); // blue-400
+  doc.text('ACTA E INFORME DE RENDIMIENTO POST-PARTIDO', startX + 6, startY + 8);
+
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(255, 255, 255);
+  doc.text(`${report.equipo_local.toUpperCase()} vs ${report.equipo_visitante.toUpperCase()}`, startX + 6, startY + 18);
+
+  // Global Rating Stars / Number in top right of header
+  doc.setFillColor(37, 99, 235); // blue-600
+  doc.roundedRect(startX + contentWidth - 42, startY + 5, 36, 16, 2, 2, 'F');
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(255, 255, 255);
+  doc.text('VALORACIÓN GLOBAL', startX + contentWidth - 24, startY + 11, { align: 'center' });
+  doc.setFontSize(12);
+  doc.setTextColor(251, 191, 36); // amber-400
+  doc.text('★ '.repeat(report.valoracion_global) + '☆ '.repeat(5 - report.valoracion_global), startX + contentWidth - 24, startY + 17, { align: 'center' });
+
+  // Match Information card underneath
+  doc.setFillColor(248, 250, 252); // slate-50
+  doc.setDrawColor(226, 232, 240); // slate-200
+  doc.setLineWidth(0.3);
+  doc.roundedRect(startX, startY + 30, contentWidth, 22, 2, 2, 'FD');
+
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(8.5);
+  doc.setTextColor(100, 116, 139); // slate-500
+  doc.text('CAMPO DE JUEGO / ESTADIO', startX + 6, startY + 37);
+  doc.text('FECHA PROGRAMADA', startX + 75, startY + 37);
+  doc.text('HORA DE INICIO', startX + 135, startY + 37);
+
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(15, 23, 42); // slate-900
+  doc.text(report.campo, startX + 6, startY + 45);
+  doc.text(new Date(report.fecha).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase(), startX + 75, startY + 45);
+  doc.text(report.hora, startX + 135, startY + 45);
+
+  // Summary / Observations block
+  doc.setFillColor(15, 23, 42); // slate-900
+  doc.roundedRect(startX, startY + 56, contentWidth, 38, 2, 2, 'F');
+
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(147, 197, 253); // blue-300
+  doc.text('RESUMEN TÁCTICO DEL ENCUENTRO DEPORTIVO', startX + 6, startY + 63);
+  doc.setDrawColor(30, 41, 59); // slate-800
+  doc.line(startX + 6, startY + 65, startX + contentWidth - 6, startY + 65);
+
+  doc.setFont('Helvetica', 'normal');
+  doc.setFontSize(8.5);
+  doc.setTextColor(226, 232, 240); // slate-200
+  
+  // Split long summary to fit the box beautifully
+  const splitResumen = doc.splitTextToSize(report.resumen || 'Sin resumen ni observaciones añadidas en la ficha técnica.', contentWidth - 12);
+  doc.text(splitResumen, startX + 6, startY + 71);
+
+  // Player participation list / stats table
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.setTextColor(15, 23, 42); // slate-900
+  doc.text('RENDIMIENTOS INDIVIDUALES DE LA PLANTILLA', startX, startY + 101);
+  doc.setDrawColor(203, 213, 225); // slate-300
+  doc.setLineWidth(0.4);
+  doc.line(startX, startY + 103, startX + contentWidth, startY + 103);
+
+  // Player table headers
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(100, 116, 139); // slate-500
+  doc.text('FUTBOLISTA / CONVOCADO', startX + 4, startY + 108);
+  doc.text('DEMARCACIÓN', startX + 60, startY + 108);
+  doc.text('MINUTOS', startX + 90, startY + 108);
+  doc.text('TARJETAS', startX + 115, startY + 108);
+  doc.text('GOLES', startX + 145, startY + 108);
+  doc.text('ASISTENCIAS', startX + 162, startY + 108);
+
+  doc.line(startX, startY + 111, startX + contentWidth, startY + 111);
+
+  let currentY = startY + 116;
+  report.rendimientos.forEach((rend: any, rIdx: number) => {
+    // Zebra rows
+    if (rIdx % 2 === 0) {
+      doc.setFillColor(248, 250, 252); // slate-50
+      doc.roundedRect(startX + 1, currentY - 4, contentWidth - 2, 6.5, 0.5, 0.5, 'F');
+    }
+
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(15, 23, 42); // slate-900
+    // Limit player name width in safety
+    const nameStr = rend.nombre_completo.length > 25 ? `${rend.nombre_completo.substring(0, 23)}...` : rend.nombre_completo;
+    doc.text(nameStr, startX + 4, currentY);
+
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(71, 85, 105); // slate-600
+    doc.text(rend.posicion, startX + 60, currentY);
+
+    doc.setFont('Helvetica', 'bold');
+    doc.text(`${rend.minutos || 0}'`, startX + 90, currentY);
+
+    // Cards styling / labels
+    if (rend.tarjetas && rend.tarjetas !== 'Ninguna') {
+      doc.setFont('Helvetica', 'bold');
+      if (rend.tarjetas === 'Roja') {
+        doc.setTextColor(220, 38, 38); // red-600
+      } else if (rend.tarjetas === 'Doble Amarilla') {
+        doc.setTextColor(180, 83, 9); // amber-700
+      } else {
+        doc.setTextColor(217, 119, 6); // yellow-600
+      }
+      doc.text(rend.tarjetas, startX + 115, currentY);
+    } else {
+      doc.setFont('Helvetica', 'normal');
+      doc.setTextColor(148, 163, 184); // slate-400
+      doc.text('-', startX + 115, currentY);
+    }
+
+    // Goals & Assists indicators
+    doc.setFont('Helvetica', 'bold');
+    if (rend.goles > 0) {
+      doc.setTextColor(22, 163, 74); // green-600
+      doc.text(`${rend.goles}`, startX + 145, currentY);
+    } else {
+      doc.setTextColor(148, 163, 184);
+      doc.text('0', startX + 145, currentY);
+    }
+
+    if (rend.asistencias > 0) {
+      doc.setTextColor(37, 99, 235); // blue-600
+      doc.text(`${rend.asistencias}`, startX + 162, currentY);
+    } else {
+      doc.setTextColor(148, 163, 184);
+      doc.text('0', startX + 162, currentY);
+    }
+
+    currentY += 7.2;
+  });
+
+  // Footer signoff
+  const footerY = 278;
+  doc.setFont('Helvetica', 'bold');
+  doc.setFontSize(7.5);
+  doc.setTextColor(148, 163, 184); // slate-400
+  doc.text('DOCUMENTO EXCLUSIVO GENERADO AUTOMÁTICAMENTE PARA REGISTRO DE DIRECTIVA E HISTORIAL DE JUEGO', startX, footerY);
+
+  const todayStr = new Date().toLocaleDateString('es-ES');
+  doc.text(`Generado el: ${todayStr}`, startX + contentWidth, footerY, { align: 'right' });
+
+  // Save the report
+  const filename = `informe_post_partido_${report.equipo_local.replace(/\s+/g, '_')}_vs_${report.equipo_visitante.replace(/\s+/g, '_')}.pdf`;
+  doc.save(filename);
+};
+
+
