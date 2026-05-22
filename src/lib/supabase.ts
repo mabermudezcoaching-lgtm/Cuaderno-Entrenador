@@ -118,4 +118,25 @@ CREATE POLICY "Autenticados pueden subir fotos" ON storage.objects
 
 CREATE POLICY "Autenticados pueden borrar fotos" ON storage.objects
   FOR DELETE TO authenticated USING (bucket_id = 'jugadores');
+
+-- 5. CREAR LA TABLA VIDEOTECA (ANÁLISIS DE VIDEO)
+CREATE TABLE IF NOT EXISTS video_analisis (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  titulo VARCHAR(150) NOT NULL,
+  rival VARCHAR(100) NOT NULL,
+  tipo VARCHAR(50) NOT NULL CHECK (tipo IN ('rival', 'pre-partido', 'post-partido')),
+  url_video TEXT NOT NULL,
+  descripcion TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- ACTIVAR RLS
+ALTER TABLE video_analisis ENABLE ROW LEVEL SECURITY;
+
+-- POLÍTICAS DE ACCESO
+CREATE POLICY "Permitir lectura publica de videos" ON video_analisis
+  FOR SELECT USING (true);
+
+CREATE POLICY "Permitir escritura completa de videos a autenticados" ON video_analisis
+  FOR ALL TO authenticated USING (true) WITH CHECK (true);
 `;

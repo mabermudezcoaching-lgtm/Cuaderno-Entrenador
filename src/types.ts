@@ -32,3 +32,13 @@ export interface TeamStats {
   byDemarcacion: Record<string, number>;
   byLateralidad: Record<string, number>;
 }
+
+export interface VideoAnalisis {
+  id: string;
+  titulo: string;
+  rival: string;
+  tipo: 'rival' | 'pre-partido' | 'post-partido';
+  url_video: string;
+  descripcion: string;
+  created_at: string;
+}

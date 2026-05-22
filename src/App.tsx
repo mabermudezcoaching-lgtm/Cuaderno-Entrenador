@@ -19,6 +19,7 @@ import PlayerCard from './components/PlayerCard';
 import PlayerForm from './components/PlayerForm';
 import AuthModal from './components/AuthModal';
 import TacticalBoard from './components/TacticalBoard';
+import Videoteca from './components/Videoteca';
 import { exportPlayerToPdf } from './lib/pdfExport';
 import { 
   Users, 
@@ -40,7 +41,8 @@ import {
   FileDown,
   X,
   Sparkles,
-  Map
+  Map,
+  Tv
 } from 'lucide-react';
 
 export default function App() {
@@ -57,7 +59,7 @@ export default function App() {
   const [selectedLaterality, setSelectedLaterality] = useState<string>('Todas');
   
   // UI Layout States
-  const [viewType, setViewType] = useState<'grid' | 'table' | 'campograma'>('grid');
+  const [viewType, setViewType] = useState<'grid' | 'table' | 'campograma' | 'videoteca'>('grid');
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [editingPlayer, setEditingPlayer] = useState<Jugador | undefined>(undefined);
@@ -326,59 +328,61 @@ export default function App() {
         <SupabaseConfig />
 
         {/* Visual Analytics Widgets */}
-        <StatsDashboard players={players} />
+        {viewType !== 'videoteca' && <StatsDashboard players={players} />}
 
         {/* 3. Panel Filtros y Acciones */}
         <div className="bg-slate-950 border border-slate-850 rounded-2xl p-4 sm:p-5 mb-8 shadow-2xl flex flex-col gap-4">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            
-            {/* Buscador */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-500" />
-              <input
-                type="text"
-                placeholder="Buscar jugador por nombre, dorsal o equipo..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full text-xs pl-10 pr-4 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100"
-              />
-            </div>
-
-            {/* Selectores filtro */}
-            <div className="grid grid-cols-2 sm:flex gap-3">
+          {viewType !== 'videoteca' && (
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               
-              <div className="flex-1 sm:w-44">
-                <select
-                  value={selectedPosition}
-                  onChange={(e) => setSelectedPosition(e.target.value)}
-                  className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205"
-                  aria-label="Filter by Position"
-                >
-                  <option value="Todas">Posiciones (Todas)</option>
-                  <option value="Portero">Porteros</option>
-                  <option value="Defensa">Defensas</option>
-                  <option value="Centrocampista">Centrocampistas</option>
-                  <option value="Delantero">Delanteros</option>
-                </select>
+              {/* Buscador */}
+              <div className="relative flex-1">
+                <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-500" />
+                <input
+                  type="text"
+                  placeholder="Buscar jugador por nombre, dorsal o equipo..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full text-xs pl-10 pr-4 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100"
+                />
               </div>
 
-              <div className="flex-1 sm:w-44">
-                <select
-                  value={selectedLaterality}
-                  onChange={(e) => setSelectedLaterality(e.target.value)}
-                  className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205"
-                  aria-label="Filter by Laterality"
-                >
-                  <option value="Todas">Dominancia (Todas)</option>
-                  <option value="Diestro">Diestros</option>
-                  <option value="Zurdo">Zurdos</option>
-                  <option value="Ambidiestro">Ambidiestros</option>
-                </select>
+              {/* Selectores filtro */}
+              <div className="grid grid-cols-2 sm:flex gap-3">
+                
+                <div className="flex-1 sm:w-44">
+                  <select
+                    value={selectedPosition}
+                    onChange={(e) => setSelectedPosition(e.target.value)}
+                    className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205"
+                    aria-label="Filter by Position"
+                  >
+                    <option value="Todas">Posiciones (Todas)</option>
+                    <option value="Portero">Porteros</option>
+                    <option value="Defensa">Defensas</option>
+                    <option value="Centrocampista">Centrocampistas</option>
+                    <option value="Delantero">Delanteros</option>
+                  </select>
+                </div>
+
+                <div className="flex-1 sm:w-44">
+                  <select
+                    value={selectedLaterality}
+                    onChange={(e) => setSelectedLaterality(e.target.value)}
+                    className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205"
+                    aria-label="Filter by Laterality"
+                  >
+                    <option value="Todas">Dominancia (Todas)</option>
+                    <option value="Diestro">Diestros</option>
+                    <option value="Zurdo">Zurdos</option>
+                    <option value="Ambidiestro">Ambidiestros</option>
+                  </select>
+                </div>
+
               </div>
 
             </div>
-
-          </div>
+          )}
 
           <div className="border-t border-slate-900 pt-4 flex flex-wrap items-center justify-between gap-3 shrink-0">
             
@@ -423,29 +427,46 @@ export default function App() {
                   <Map className="h-3.5 w-3.5 text-blue-400" />
                   <span>Campograma</span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setViewType('videoteca')}
+                  className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
+                    viewType === 'videoteca' 
+                      ? 'bg-blue-600 text-white font-bold' 
+                      : 'text-slate-500 hover:text-slate-300'
+                  }`}
+                  title="Videoteca táctica del equipo"
+                >
+                  <Tv className="h-3.5 w-3.5 text-blue-400" />
+                  <span>Videoteca</span>
+                </button>
               </div>
             </div>
 
             <div className="flex gap-2.5">
-              {(searchQuery || selectedPosition !== 'Todas' || selectedLaterality !== 'Todas') && (
-                <button
-                  type="button"
-                  onClick={clearFilters}
-                  className="inline-flex items-center gap-1.5 text-xs text-rose-300 bg-rose-950/20 border border-rose-900/40 hover:bg-rose-950/40 rounded-xl px-3.5 py-2.5 transition-colors cursor-pointer font-bold font-mono uppercase"
-                >
-                  <FilterX className="h-4 w-4 text-rose-450" />
-                  REESTABLECER
-                </button>
-              )}
+              {viewType !== 'videoteca' && (
+                <>
+                  {(searchQuery || selectedPosition !== 'Todas' || selectedLaterality !== 'Todas') && (
+                    <button
+                      type="button"
+                      onClick={clearFilters}
+                      className="inline-flex items-center gap-1.5 text-xs text-rose-300 bg-rose-950/20 border border-rose-900/40 hover:bg-rose-950/40 rounded-xl px-3.5 py-2.5 transition-colors cursor-pointer font-bold font-mono uppercase"
+                    >
+                      <FilterX className="h-4 w-4 text-rose-450" />
+                      REESTABLECER
+                    </button>
+                  )}
 
-              <button
-                type="button"
-                onClick={handleAddClick}
-                className="inline-flex items-center gap-1.5 text-xs text-white bg-blue-600 hover:bg-blue-500 rounded-xl px-4 py-2.5 font-black uppercase tracking-wider transition-colors shadow-lg shadow-blue-900/10 cursor-pointer"
-              >
-                <Plus className="h-4 w-4" />
-                INSCRIBIR FUTBOLISTA
-              </button>
+                  <button
+                    type="button"
+                    onClick={handleAddClick}
+                    className="inline-flex items-center gap-1.5 text-xs text-white bg-blue-600 hover:bg-blue-500 rounded-xl px-4 py-2.5 font-black uppercase tracking-wider transition-colors shadow-lg shadow-blue-900/10 cursor-pointer"
+                  >
+                    <Plus className="h-4 w-4" />
+                    INSCRIBIR FUTBOLISTA
+                  </button>
+                </>
+              )}
             </div>
 
           </div>
@@ -459,6 +480,8 @@ export default function App() {
           </div>
         ) : viewType === 'campograma' ? (
           <TacticalBoard players={players} />
+        ) : viewType === 'videoteca' ? (
+          <Videoteca />
         ) : filteredPlayers.length === 0 ? (
           <div className="bg-slate-950 border border-slate-850 h-64 flex flex-col items-center justify-center p-6 text-center rounded-2xl shadow-xl">
             <div className="bg-slate-900 p-3.5 rounded-full text-slate-500 mb-3.5 border border-slate-800">
