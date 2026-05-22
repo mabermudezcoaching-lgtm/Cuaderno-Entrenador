@@ -18,6 +18,7 @@ import StatsDashboard from './components/StatsDashboard';
 import PlayerCard from './components/PlayerCard';
 import PlayerForm from './components/PlayerForm';
 import AuthModal from './components/AuthModal';
+import TacticalBoard from './components/TacticalBoard';
 import { exportPlayerToPdf } from './lib/pdfExport';
 import { 
   Users, 
@@ -38,7 +39,8 @@ import {
   Eye,
   FileDown,
   X,
-  Sparkles
+  Sparkles,
+  Map
 } from 'lucide-react';
 
 export default function App() {
@@ -55,7 +57,7 @@ export default function App() {
   const [selectedLaterality, setSelectedLaterality] = useState<string>('Todas');
   
   // UI Layout States
-  const [viewType, setViewType] = useState<'grid' | 'table'>('grid');
+  const [viewType, setViewType] = useState<'grid' | 'table' | 'campograma'>('grid');
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [editingPlayer, setEditingPlayer] = useState<Jugador | undefined>(undefined);
@@ -408,6 +410,19 @@ export default function App() {
                 >
                   <List className="h-4 w-4" />
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setViewType('campograma')}
+                  className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
+                    viewType === 'campograma' 
+                      ? 'bg-blue-600 text-white font-bold' 
+                      : 'text-slate-500 hover:text-slate-300'
+                  }`}
+                  title="Pizarra táctica y alineación de campograma"
+                >
+                  <Map className="h-3.5 w-3.5 text-blue-400" />
+                  <span>Campograma</span>
+                </button>
               </div>
             </div>
 
@@ -442,6 +457,8 @@ export default function App() {
             <Loader2 className="h-8 w-8 text-blue-505 animate-spin" />
             <p className="text-xs text-slate-500 font-medium animate-pulse">Cargando futbolistas inscritos...</p>
           </div>
+        ) : viewType === 'campograma' ? (
+          <TacticalBoard players={players} />
         ) : filteredPlayers.length === 0 ? (
           <div className="bg-slate-950 border border-slate-850 h-64 flex flex-col items-center justify-center p-6 text-center rounded-2xl shadow-xl">
             <div className="bg-slate-900 p-3.5 rounded-full text-slate-500 mb-3.5 border border-slate-800">
