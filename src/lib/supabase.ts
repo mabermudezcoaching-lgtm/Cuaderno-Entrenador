@@ -187,4 +187,26 @@ CREATE POLICY "Permitir lectura publica de resumen_temporada" ON resumen_tempora
 
 CREATE POLICY "Permitir escritura completa de resumen_temporada a autenticados" ON resumen_temporada_jugadores
   FOR ALL TO authenticated USING (true) WITH CHECK (true);
+
+-- 8. CREAR LA TABLA DE CALENDARIO DEPORTIVO
+CREATE TABLE IF NOT EXISTS calendario_deportivo (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  titulo VARCHAR(250) NOT NULL,
+  tipo_evento VARCHAR(50) NOT NULL CHECK (tipo_evento IN ('entrenamiento', 'partido')),
+  fecha DATE NOT NULL,
+  hora TIME NOT NULL,
+  indice_carga VARCHAR(100) NOT NULL CHECK (indice_carga IN ('Alta', 'Media', 'Baja', 'Charla', 'Preventivo', 'Recuperación')),
+  notas TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- ACTIVAR RLS
+ALTER TABLE calendario_deportivo ENABLE ROW LEVEL SECURITY;
+
+-- POLÍTICAS DE ACCESO CALENDARIO
+CREATE POLICY "Permitir lectura publica de calendario" ON calendario_deportivo
+  FOR SELECT USING (true);
+
+CREATE POLICY "Permitir escritura completa de calendario a autenticados" ON calendario_deportivo
+  FOR ALL TO authenticated USING (true) WITH CHECK (true);
 `;

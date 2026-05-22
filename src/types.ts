@@ -80,3 +80,17 @@ export interface InformePostPartido {
   created_at: string;
 }
 
+export type IndiceCarga = 'Alta' | 'Media' | 'Baja' | 'Charla' | 'Preventivo' | 'Recuperación';
+
+export interface CalendarioEvento {
+  id: string;
+  titulo: string;
+  tipo_evento: 'entrenamiento' | 'partido';
+  fecha: string;
+  hora: string;
+  indice_carga: IndiceCarga;
+  notas?: string;
+  created_at?: string;
+}
+
+

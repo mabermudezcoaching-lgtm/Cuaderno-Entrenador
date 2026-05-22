@@ -21,6 +21,7 @@ import AuthModal from './components/AuthModal';
 import TacticalBoard from './components/TacticalBoard';
 import Videoteca from './components/Videoteca';
 import InformesPostPartido from './components/InformesPostPartido';
+import CalendarioDeportivo from './components/CalendarioDeportivo';
 import { exportPlayerToPdf } from './lib/pdfExport';
 import { 
   Users, 
@@ -61,7 +62,7 @@ export default function App() {
   const [selectedLaterality, setSelectedLaterality] = useState<string>('Todas');
   
   // UI Layout States
-  const [viewType, setViewType] = useState<'grid' | 'table' | 'campograma' | 'videoteca' | 'informes'>('grid');
+  const [viewType, setViewType] = useState<'grid' | 'table' | 'campograma' | 'videoteca' | 'informes' | 'calendario'>('grid');
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [editingPlayer, setEditingPlayer] = useState<Jugador | undefined>(undefined);
@@ -330,11 +331,11 @@ export default function App() {
         <SupabaseConfig />
 
         {/* Visual Analytics Widgets */}
-        {viewType !== 'videoteca' && viewType !== 'informes' && <StatsDashboard players={players} />}
+        {viewType !== 'videoteca' && viewType !== 'informes' && viewType !== 'calendario' && <StatsDashboard players={players} />}
 
         {/* 3. Panel Filtros y Acciones */}
         <div className="bg-slate-950 border border-slate-850 rounded-2xl p-4 sm:p-5 mb-8 shadow-2xl flex flex-col gap-4">
-          {viewType !== 'videoteca' && viewType !== 'informes' && (
+          {viewType !== 'videoteca' && viewType !== 'informes' && viewType !== 'calendario' && (
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               
               {/* Buscador */}
@@ -455,11 +456,24 @@ export default function App() {
                   <FileText className="h-3.5 w-3.5 text-blue-400" />
                   <span>Informes</span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setViewType('calendario')}
+                  className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
+                    viewType === 'calendario' 
+                      ? 'bg-blue-600 text-white font-bold' 
+                      : 'text-slate-500 hover:text-slate-300'
+                  }`}
+                  title="Calendario y agenda de carga"
+                >
+                  <Calendar className="h-3.5 w-3.5 text-blue-400" />
+                  <span>Calendario</span>
+                </button>
               </div>
             </div>
 
             <div className="flex gap-2.5">
-              {viewType !== 'videoteca' && viewType !== 'informes' && (
+              {viewType !== 'videoteca' && viewType !== 'informes' && viewType !== 'calendario' && (
                 <>
                   {(searchQuery || selectedPosition !== 'Todas' || selectedLaterality !== 'Todas') && (
                     <button
@@ -499,6 +513,8 @@ export default function App() {
           <Videoteca />
         ) : viewType === 'informes' ? (
           <InformesPostPartido />
+        ) : viewType === 'calendario' ? (
+          <CalendarioDeportivo />
         ) : filteredPlayers.length === 0 ? (
           <div className="bg-slate-950 border border-slate-850 h-64 flex flex-col items-center justify-center p-6 text-center rounded-2xl shadow-xl">
             <div className="bg-slate-900 p-3.5 rounded-full text-slate-500 mb-3.5 border border-slate-800">
