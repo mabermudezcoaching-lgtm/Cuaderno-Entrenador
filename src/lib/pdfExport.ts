@@ -20,7 +20,7 @@ export const exportPlayerToPdf = (player: Jugador) => {
   // Header branding text
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(10);
-  doc.setTextColor(96, 165, 250); // blue-400
+  doc.setTextColor(52, 211, 153); // emerald-400
   doc.text('CUADERNO DE ENTRENADOR - FICHA TÉCNICA OFICIAL', startX + 8, startY + 11);
 
   doc.setFont('Helvetica', 'bold');
@@ -29,7 +29,7 @@ export const exportPlayerToPdf = (player: Jugador) => {
   doc.text(`${player.nombre.toUpperCase()} ${player.apellidos.toUpperCase()}`, startX + 8, startY + 22);
 
   // Dorsal Badge in Header
-  doc.setFillColor(37, 99, 235); // blue-600
+  doc.setFillColor(5, 150, 105); // emerald-600
   doc.roundedRect(startX + contentWidth - 25, startY + 6, 18, 18, 4, 4, 'F');
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(12);
@@ -96,7 +96,7 @@ export const exportPlayerToPdf = (player: Jugador) => {
 
     // Score digit
     doc.setFont('Helvetica', 'bold');
-    doc.setTextColor(37, 99, 235); // blue-600
+    doc.setTextColor(5, 150, 105); // emerald-600
     doc.text(`${val}/5`, startX + 134, yPos);
 
     // Draw 5 notch boxes
@@ -104,7 +104,7 @@ export const exportPlayerToPdf = (player: Jugador) => {
     const boxHeight = 2.5;
     for (let i = 1; i <= 5; i++) {
       if (i <= val) {
-        doc.setFillColor(37, 99, 235); // Filled blue-600
+        doc.setFillColor(5, 150, 105); // Filled emerald-600
       } else {
         doc.setFillColor(203, 213, 225); // Unfilled slate-300
       }
@@ -187,7 +187,7 @@ export const exportTacticalBoardToPdf = (
 
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(9);
-  doc.setTextColor(96, 165, 250); // blue-400
+  doc.setTextColor(52, 211, 153); // emerald-400
   doc.text('INFORME TÁCTICO OFICIAL • ALINEACIÓN Y CAMPOGRAMA', startX + 6, startY + 8);
 
   doc.setFont('Helvetica', 'bold');
@@ -231,7 +231,7 @@ export const exportTacticalBoardToPdf = (
   doc.setFontSize(9.5);
   doc.setTextColor(15, 23, 42); // slate-900
   doc.text(`L: ${usFormation} vs R: ${showRivals ? rivalFormation : 'N/A'}`, colLeftX + 5, 51);
-  doc.setTextColor(37, 99, 235); // blue-600
+  doc.setTextColor(5, 150, 105); // emerald-600
   doc.text(`${configuredCount} / 11 EXPEDIENTADOS`, colLeftX + 53, 51);
 
   // Lineup Table container
@@ -240,7 +240,7 @@ export const exportTacticalBoardToPdf = (
 
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(9);
-  doc.setTextColor(147, 197, 253); // blue-300
+  doc.setTextColor(110, 231, 183); // emerald-300
   doc.text('ONCE TITULAR SELECCIONADO', colLeftX + 6, 69);
   doc.setDrawColor(30, 41, 59); // slate-800
   doc.setLineWidth(0.4);
@@ -278,7 +278,7 @@ export const exportTacticalBoardToPdf = (
     if (assignedPlayer) {
       doc.setFont('Helvetica', 'bold');
       doc.setFontSize(8);
-      doc.setTextColor(96, 165, 250); // blue-400
+      doc.setTextColor(52, 211, 153); // emerald-400
       doc.text(`#${assignedPlayer.dorsal}`, colLeftX + 19, rowY - 0.5);
 
       doc.setFont('Helvetica', 'bold');
@@ -300,7 +300,7 @@ export const exportTacticalBoardToPdf = (
 
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(9);
-  doc.setTextColor(147, 197, 253); // blue-300
+  doc.setTextColor(110, 231, 183); // emerald-300
   doc.text('CONVOCATORIA: BANQUILLO (SUPLENTES)', colLeftX + 6, 179);
   doc.line(colLeftX + 6, 181, colLeftX + colLeftW - 6, 181);
 
@@ -342,7 +342,7 @@ export const exportTacticalBoardToPdf = (
     if (benchPlayers.length > 7) {
       doc.setFont('Helvetica', 'bold');
       doc.setFontSize(7);
-      doc.setTextColor(96, 165, 250);
+      doc.setTextColor(52, 211, 153); // emerald-400
       doc.text(`+ ${benchPlayers.length - 7} JUGADORES MÁS EN EL BANQUILLO DE SUPLENTES`, colLeftX + 6, 248);
     }
   }
@@ -457,7 +457,7 @@ export const exportTacticalBoardToPdf = (
     });
   }
 
-  // OUR CONTROLLERS NODES (Blue Team, local build)
+  // OUR CONTROLLERS NODES (Green Team, local build)
   ourCoords.forEach((coord, idx) => {
     const nodeX = pitchX + (coord.x / 100) * pitchW;
     const nodeY = pitchY + (coord.y / 100) * pitchH;
@@ -466,13 +466,13 @@ export const exportTacticalBoardToPdf = (
     const isGK = idx === 0;
 
     if (assignedPlayer) {
-      // 1. Solid colored circle (Amber/Orange for Portero, Electric Blue for outfield players)
+      // 1. Solid colored circle (Amber/Orange for Portero, Emerald Green for outfield players)
       if (isGK) {
         doc.setFillColor(245, 158, 11); // amber-500
         doc.setDrawColor(254, 243, 199); // amber-100
       } else {
-        doc.setFillColor(37, 99, 235); // blue-600 Outfield
-        doc.setDrawColor(219, 234, 254); // blue-100
+        doc.setFillColor(5, 150, 105); // emerald-600 Outfield
+        doc.setDrawColor(209, 250, 229); // emerald-100
       }
       doc.setLineWidth(0.4);
       doc.circle(nodeX, nodeY, 3.2, 'FD');
@@ -545,7 +545,7 @@ export const exportPostMatchReportToPdf = (report: any) => {
   // Title of report
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(8);
-  doc.setTextColor(96, 165, 250); // blue-400
+  doc.setTextColor(52, 211, 153); // emerald-400
   doc.text('ACTA E INFORME DE RENDIMIENTO POST-PARTIDO', startX + 6, startY + 8);
 
   doc.setFont('Helvetica', 'bold');
@@ -554,7 +554,7 @@ export const exportPostMatchReportToPdf = (report: any) => {
   doc.text(`${report.equipo_local.toUpperCase()} vs ${report.equipo_visitante.toUpperCase()}`, startX + 6, startY + 18);
 
   // Global Rating Stars / Number in top right of header
-  doc.setFillColor(37, 99, 235); // blue-600
+  doc.setFillColor(5, 150, 105); // emerald-600
   doc.roundedRect(startX + contentWidth - 42, startY + 5, 36, 16, 2, 2, 'F');
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(8);
@@ -590,7 +590,7 @@ export const exportPostMatchReportToPdf = (report: any) => {
 
   doc.setFont('Helvetica', 'bold');
   doc.setFontSize(9);
-  doc.setTextColor(147, 197, 253); // blue-300
+  doc.setTextColor(110, 231, 183); // emerald-300
   doc.text('RESUMEN TÁCTICO DEL ENCUENTRO DEPORTIVO', startX + 6, startY + 63);
   doc.setDrawColor(30, 41, 59); // slate-800
   doc.line(startX + 6, startY + 65, startX + contentWidth - 6, startY + 65);
@@ -677,7 +677,7 @@ export const exportPostMatchReportToPdf = (report: any) => {
     }
 
     if (rend.asistencias > 0) {
-      doc.setTextColor(37, 99, 235); // blue-600
+      doc.setTextColor(2, 132, 199); // sky-600
       doc.text(`${rend.asistencias}`, startX + 149, currentY);
     } else {
       doc.setTextColor(148, 163, 184);

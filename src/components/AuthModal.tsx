@@ -88,10 +88,9 @@ export default function AuthModal({ onClose, onAuthSuccess }: AuthModalProps) {
         role="dialog"
         aria-modal="true"
       >
-        {/* Header */}
-        <div className="px-6 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+        {/* Header         <div className="px-6 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
           <h2 className="text-sm font-black text-white uppercase tracking-wider font-display flex items-center gap-2">
-            {isSignUp ? <UserPlus className="h-5 w-5 text-blue-500" /> : <LogIn className="h-5 w-5 text-blue-500" />}
+            {isSignUp ? <UserPlus className="h-5 w-5 text-emerald-500" /> : <LogIn className="h-5 w-5 text-emerald-500" />}
             {isSignUp ? 'Crear Ficha Técnica' : 'Acceso Cuerpo Técnico'}
           </h2>
           <button 
@@ -124,7 +123,7 @@ export default function AuthModal({ onClose, onAuthSuccess }: AuthModalProps) {
           )}
 
           {message && (
-            <div className="p-3 bg-blue-950/40 text-blue-300 rounded-lg text-xs border border-blue-900/60 font-mono">
+            <div className="p-3 bg-emerald-950/40 text-emerald-300 rounded-lg text-xs border border-emerald-900/60 font-mono">
               {message}
             </div>
           )}
@@ -142,7 +141,7 @@ export default function AuthModal({ onClose, onAuthSuccess }: AuthModalProps) {
                 placeholder="entrenador@equipo.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full text-xs pl-11 pr-4 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100"
+                className="w-full text-xs pl-11 pr-4 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100"
               />
             </div>
           </div>
@@ -161,7 +160,7 @@ export default function AuthModal({ onClose, onAuthSuccess }: AuthModalProps) {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full text-xs pl-11 pr-4 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100"
+                className="w-full text-xs pl-11 pr-4 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100"
               />
             </div>
           </div>
@@ -169,7 +168,7 @@ export default function AuthModal({ onClose, onAuthSuccess }: AuthModalProps) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-400 text-white font-black uppercase tracking-widest text-xs rounded-lg py-3 shadow-lg shadow-blue-900/30 transition-colors cursor-pointer"
+            className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-400 text-white font-black uppercase tracking-widest text-xs rounded-lg py-3 shadow-lg shadow-emerald-900/30 transition-colors cursor-pointer"
           >
             {loading ? 'Validando Ficha...' : isSignUp ? 'Confirmar Registro' : 'Autorizar Acceso'}
           </button>
@@ -182,7 +181,7 @@ export default function AuthModal({ onClose, onAuthSuccess }: AuthModalProps) {
                 setError(null);
                 setMessage(null);
               }}
-              className="text-xs text-slate-408 hover:text-blue-400 transition-colors cursor-pointer"
+              className="text-xs text-slate-400 hover:text-emerald-400 transition-colors cursor-pointer"
             >
               {isSignUp ? '¿Ya estás registrado? Inicia sesión aquí' : '¿Nuevo entrenador? Regístrate en la central'}
             </button>

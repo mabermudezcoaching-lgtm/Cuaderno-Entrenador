@@ -51,7 +51,7 @@ export default function StatsDashboard({ players }: StatsDashboardProps) {
     switch (pos) {
       case 'Portero': return 'bg-amber-500';
       case 'Defensa': return 'bg-cyan-500';
-      case 'Centrocampista': return 'bg-blue-500';
+      case 'Centrocampista': return 'bg-emerald-500';
       case 'Delantero': return 'bg-rose-500';
       default: return 'bg-slate-500';
     }
@@ -61,7 +61,7 @@ export default function StatsDashboard({ players }: StatsDashboardProps) {
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
       {/* Card 1: Total Jugadores */}
       <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-5 flex items-center gap-4 hover:border-slate-700 transition-colors">
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-blue-400">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-emerald-400">
           <Users className="h-6 w-6" id="stat-icon-players" />
         </div>
         <div>
@@ -73,7 +73,7 @@ export default function StatsDashboard({ players }: StatsDashboardProps) {
 
       {/* Card 2: Edad Media */}
       <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-5 flex items-center gap-4 hover:border-slate-700 transition-colors">
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-blue-400">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 text-emerald-400">
           <Hourglass className="h-6 w-6" id="stat-icon-age" />
         </div>
         <div>
@@ -86,19 +86,19 @@ export default function StatsDashboard({ players }: StatsDashboardProps) {
       {/* Card 3: Distribución Demarcaciones */}
       <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition-colors flex flex-col justify-center">
         <div className="flex items-center gap-2 mb-2.5">
-          <Shield className="h-4 w-4 text-blue-400" />
+          <Shield className="h-4 w-4 text-emerald-400" />
           <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block font-display">Líneas de Juego</span>
         </div>
         <div className="space-y-1.5">
           {Object.entries(positionCounts).map(([pos, count]) => {
-            const pct = totalPlayers > 0 ? (count / totalPlayers) * 100 : 0;
+            const pct = totalPlayers > 0 ? (count / totalPlayers) * 105 : 0;
             return (
               <div key={pos} className="flex items-center gap-2 text-[10px]">
                 <span className="w-20 text-slate-400 truncate font-semibold font-mono">{pos}</span>
                 <div className="flex-1 bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800/50">
                   <div 
                     className={`${getPositionBarColor(pos)} h-full rounded-full transition-all duration-500`}
-                    style={{ width: `${pct}%` }}
+                    style={{ width: `${Math.min(pct, 100)}%` }}
                   />
                 </div>
                 <span className="w-5 text-right font-black font-mono text-white">{count}</span>
@@ -111,7 +111,7 @@ export default function StatsDashboard({ players }: StatsDashboardProps) {
       {/* Card 4: Lateralidad */}
       <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition-colors flex flex-col justify-center">
         <div className="flex items-center gap-2 mb-2.5">
-          <Compass className="h-4 w-4 text-blue-400" />
+          <Compass className="h-4 w-4 text-emerald-400" />
           <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block font-display">Pie Dominante</span>
         </div>
         <div className="space-y-1.5">
@@ -122,7 +122,7 @@ export default function StatsDashboard({ players }: StatsDashboardProps) {
                 <span className="w-20 text-slate-400 truncate font-semibold font-mono">{lat}</span>
                 <div className="flex-1 bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800/50">
                   <div 
-                    className="bg-blue-500 h-full rounded-full transition-all duration-500" 
+                    className="bg-emerald-500 h-full rounded-full transition-all duration-500" 
                     style={{ width: `${pct}%` }}
                   />
                 </div>

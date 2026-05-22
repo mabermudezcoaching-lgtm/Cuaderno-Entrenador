@@ -35,7 +35,7 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
       case 'Defensa':
         return 'bg-cyan-950/50 text-cyan-400 border-cyan-800/40';
       case 'Centrocampista':
-        return 'bg-blue-950/50 text-blue-400 border-blue-800/40';
+        return 'bg-emerald-950/50 text-emerald-400 border-emerald-800/40';
       case 'Delantero':
         return 'bg-rose-950/50 text-rose-400 border-rose-800/40';
       default:
@@ -58,7 +58,7 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
           <div
             key={idx}
             className={`h-1.5 w-2 rounded-[1px] transition-colors ${
-              idx <= val ? 'bg-blue-500' : 'bg-slate-800'
+              idx <= val ? 'bg-emerald-500' : 'bg-slate-800'
             }`}
           />
         ))}
@@ -69,7 +69,7 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
   return (
     <div className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:border-slate-700 hover:scale-[1.01] transition-all duration-300 flex flex-col group relative h-full">
       {/* Dorsal Badge on top-right */}
-      <div className="absolute top-3.5 right-3.5 z-10 bg-slate-900 border border-slate-850 text-blue-400 h-8 w-8 rounded-lg flex items-center justify-center font-mono font-black text-sm shadow">
+      <div className="absolute top-3.5 right-3.5 z-10 bg-slate-900 border border-slate-850 text-emerald-400 h-8 w-8 rounded-lg flex items-center justify-center font-mono font-black text-sm shadow">
         {player.dorsal}
       </div>
 
@@ -84,13 +84,13 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 flex flex-col items-center justify-center p-6 text-white text-center">
+          <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950 flex flex-col items-center justify-center p-6 text-white text-center">
             {/* Jersey Vector Placeholder */}
             <div className="relative h-20 w-20 flex items-center justify-center mb-1">
-              <svg className="absolute inset-0 h-full w-full text-blue-500/10" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="absolute inset-0 h-full w-full text-emerald-500/10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L4 5v3c0 5.25 3.42 10.16 8 11.42 4.58-1.26 8-6.17 8-11.42V5l-8-3z" />
               </svg>
-              <div className="z-10 text-xl font-black tracking-tighter uppercase text-blue-400 font-display">
+              <div className="z-10 text-xl font-black tracking-tighter uppercase text-emerald-400 font-display">
                 {getInitials()}
               </div>
             </div>
@@ -108,10 +108,10 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
 
       {/* Roster Metadata Info */}
       <div className="p-4 flex-1 flex flex-col">
-        <span className="text-[10px] text-blue-500 font-extrabold uppercase tracking-widest mb-1.5 block font-display">
+        <span className="text-[10px] text-emerald-500 font-extrabold uppercase tracking-widest mb-1.5 block font-display">
           {player.equipo}
         </span>
-        <h3 className="font-black text-white text-lg leading-tight uppercase tracking-tight font-display group-hover:text-blue-400 transition-colors">
+        <h3 className="font-black text-white text-lg leading-tight uppercase tracking-tight font-display group-hover:text-emerald-400 transition-colors">
           {player.nombre} <span className="block text-slate-400 font-normal text-base normal-case font-sans">{player.apellidos}</span>
         </h3>
 
@@ -127,7 +127,7 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
 
           <div className="flex items-center justify-between">
             <span className="text-slate-500 font-bold uppercase tracking-wider text-[10px] font-mono">Lateralidad:</span>
-            <span className="font-bold text-blue-400 inline-flex items-center gap-1.5 uppercase font-mono text-[11px]">
+            <span className="font-bold text-emerald-400 inline-flex items-center gap-1.5 uppercase font-mono text-[11px]">
               <Pocket className="h-3.5 w-3.5 text-slate-500" />
               {player.lateralidad}
             </span>
@@ -145,7 +145,7 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
         {/* Atributos del Jugador */}
         <div className="mt-3.5 bg-slate-900 border border-slate-850/60 rounded-xl p-3 space-y-2">
           <span className="text-[9px] uppercase font-bold text-slate-500 block font-display tracking-widest border-b border-slate-800 pb-1.5 flex items-center gap-1">
-            <Sparkles className="h-3 w-3 text-blue-400" /> Rendimiento Técnico / Físico
+            <Sparkles className="h-3 w-3 text-emerald-400" /> Rendimiento Técnico / Físico
           </span>
           <div className="grid grid-cols-2 gap-x-3.5 gap-y-1.5 text-[10px] font-mono leading-none">
             <div className="flex justify-between items-center bg-slate-950/20 p-1 rounded">
@@ -192,7 +192,7 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
             onClick={() => onPreview(player)}
             className="inline-flex items-center justify-center gap-1.5 text-[10px] font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900 hover:bg-slate-850 border border-slate-800 rounded-lg py-2 transition-all cursor-pointer hover:shadow-md"
           >
-            <Eye className="h-3.5 w-3.5 text-blue-400" />
+            <Eye className="h-3.5 w-3.5 text-emerald-400" />
             Ver Ficha
           </button>
           <button
@@ -213,7 +213,7 @@ export default function PlayerCard({ player, isAdmin, onEdit, onDelete, onPrevie
                 <button
                   type="button"
                   onClick={() => onEdit(player)}
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs text-blue-400 hover:text-white bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg py-2 font-bold tracking-wider uppercase transition-colors cursor-pointer"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs text-emerald-400 hover:text-white bg-slate-900 hover:bg-slate-850 border border-slate-800 rounded-lg py-2 font-bold tracking-wider uppercase transition-colors cursor-pointer"
                 >
                   <Edit2 className="h-3.5 w-3.5" />
                   Editar

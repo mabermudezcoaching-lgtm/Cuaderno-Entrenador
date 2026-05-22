@@ -158,9 +158,9 @@ const FORMATIONS_RIVAL: Record<string, Coordinate[]> = {
 // Colors of Jersey graphics style
 const JERSEY_COLORS = {
   us: {
-    bg: 'bg-blue-600',
-    border: 'border-blue-300',
-    text: 'text-white shadow-blue-900/30'
+    bg: 'bg-emerald-600',
+    border: 'border-emerald-300',
+    text: 'text-white shadow-emerald-950/40'
   },
   rival: {
     bg: 'bg-rose-700',
@@ -399,7 +399,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
           
           <div className="space-y-1">
             <div className="flex items-center gap-1.5">
-              <Sparkles className="h-5 w-5 text-blue-500 animate-pulse" />
+              <Sparkles className="h-5 w-5 text-emerald-500 animate-pulse" />
               <h2 className="text-sm sm:text-base font-black uppercase tracking-wider text-white font-display">
                 PIZARRA TÁCTICA & CAMPOGRAMA INTERACTIVO
               </h2>
@@ -425,7 +425,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
             <button
               type="button"
               onClick={handleSaveToLocalStorage}
-              className="inline-flex items-center gap-1.5 text-xs text-white bg-blue-600 hover:bg-blue-500 rounded-xl px-4 py-2.5 transition-all font-black uppercase tracking-wider shadow-lg shadow-blue-950 cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl px-4 py-2.5 transition-all font-black uppercase tracking-wider shadow-lg shadow-emerald-950 cursor-pointer"
             >
               <Save className="h-4 w-4" />
               GUARDAR ALINEACIÓN
@@ -457,8 +457,8 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
 
         {/* Feedback Alert Banner */}
         {showSaveMessage && (
-          <div className="bg-blue-950/40 border border-blue-900/40 p-3 rounded-xl flex items-center gap-2 text-xs text-blue-400 font-bold font-mono animate-fadeIn">
-            <CheckCircle className="h-4 w-4 text-blue-400" />
+          <div className="bg-emerald-950/40 border border-emerald-900/40 p-3 rounded-xl flex items-center gap-2 text-xs text-emerald-400 font-bold font-mono animate-fadeIn">
+            <CheckCircle className="h-4 w-4 text-emerald-400" />
             ¡TÁCTICA Y ALINEACIONES GUARDADAS CORRECTAMENTE EN EL DISPOSITIVO!
           </div>
         )}
@@ -475,7 +475,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
               <select
                 value={usFormation}
                 onChange={(e) => changeUsFormation(e.target.value)}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205 py-3 font-bold"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-205 py-3 font-bold"
                 aria-label="Our Team Formation"
               >
                 {Object.keys(FORMATIONS_US).map((f) => (
@@ -494,7 +494,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
               disabled={!showRivals}
               value={rivalFormation}
               onChange={(e) => changeRivalFormation(e.target.value)}
-              className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205 py-3 font-bold disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-205 py-3 font-bold disabled:opacity-40 disabled:cursor-not-allowed"
               aria-label="Rival Team Formation"
             >
               {Object.keys(FORMATIONS_RIVAL).map((f) => (
@@ -624,7 +624,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                       <div className="relative">
                         {/* Compact Circular user profile badge */}
                         <div className={`w-11 h-11 rounded-full border-2 bg-slate-900 shadow-xl overflow-hidden hover:scale-110 active:scale-95 transition-transform flex items-center justify-center ${
-                          isGK ? 'border-amber-400 shadow-amber-950/40' : 'border-blue-500 shadow-blue-950/40'
+                          isGK ? 'border-amber-400 shadow-amber-950/40' : 'border-emerald-500 shadow-emerald-950/40'
                         }`}>
                           {assignedPlayer.foto_jugador ? (
                             <img
@@ -645,7 +645,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                           )}
                           {/* Top mini dorsal overlay inside */}
                           <div className={`absolute -top-1 -right-1 font-mono text-[8px] font-extrabold px-1 rounded-full ${
-                            isGK ? 'bg-amber-500 text-slate-950' : 'bg-blue-600 text-white'
+                            isGK ? 'bg-amber-500 text-slate-950' : 'bg-emerald-600 text-white'
                           }`}>
                             {assignedPlayer.dorsal}
                           </div>
@@ -682,7 +682,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                         >
                           {assignedPlayer.nombre}
                         </button>
-                        <span className="text-[6.5px] font-mono text-blue-300 uppercase tracking-widest leading-none bg-blue-950/40 px-1 rounded">
+                        <span className="text-[6.5px] font-mono text-emerald-300 uppercase tracking-widest leading-none bg-emerald-950/40 px-1 rounded">
                           {coord.label}
                         </span>
                       </div>
@@ -700,7 +700,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
           </div>
 
           <div className="max-w-[500px] w-full mx-auto mt-3.5 bg-slate-950 border border-slate-850 p-3 rounded-2xl flex items-start gap-2">
-            <Info className="h-4 w-4 text-blue-500 shrink-0 mt-0.5" />
+            <Info className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
             <p className="text-[10px] text-slate-400 font-mono leading-relaxed">
               * Presiona y arrastra a cualquier jugador en el campo para cambiar de sitio. Pincha sobre un marcador vacío o sobre el nombre de un jugador para sustituirlo o asignar tu plantilla oficial.
             </p>
@@ -716,7 +716,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
             
             <div className="border-b border-slate-900 pb-3 flex items-center justify-between">
               <div>
-                <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest font-mono block">SUPLENTES Y ROSTER</span>
+                <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest font-mono block">SUPLENTES Y ROSTER</span>
                 <h3 className="text-sm font-extrabold text-white font-display">
                   FUTBOLISTAS DISPONIBLES
                 </h3>
@@ -763,7 +763,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <span className="text-[10px] font-bold text-blue-400">#{item.dorsal}</span>
+                          <span className="text-[10px] font-bold text-emerald-400">#{item.dorsal}</span>
                         )}
                       </div>
                       <div className="min-w-0">
@@ -782,7 +782,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                       onClick={() => {
                         setBenchPlayerToPlace(item);
                       }}
-                      className="inline-flex items-center gap-1 text-[9px] font-black uppercase text-blue-400 hover:text-white bg-slate-950 hover:bg-blue-600 border border-slate-800 hover:border-blue-500 rounded-lg px-2 py-1.5 transition-all cursor-pointer"
+                      className="inline-flex items-center gap-1 text-[9px] font-black uppercase text-emerald-400 hover:text-white bg-slate-950 hover:bg-emerald-600 border border-slate-800 hover:border-emerald-500 rounded-lg px-2 py-1.5 transition-all cursor-pointer"
                     >
                       Alinear <ArrowRight className="h-2.5 w-2.5" />
                     </button>
@@ -882,7 +882,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                         disabled={isCurrentlyInThisSlot}
                         className={`w-full p-2.5 border rounded-xl flex items-center justify-between text-left transition-all cursor-pointer ${
                           isCurrentlyInThisSlot
-                            ? 'bg-blue-950/40 text-blue-400 border-blue-500/50'
+                            ? 'bg-emerald-950/40 text-emerald-400 border-emerald-500/50'
                             : 'bg-slate-950 hover:bg-slate-850 text-white border-slate-850'
                         }`}
                       >
@@ -896,7 +896,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                                 className="w-full h-full object-cover"
                               />
                             ) : (
-                              <span className="text-[10px] font-bold text-blue-400">#{p.dorsal}</span>
+                              <span className="text-[10px] font-bold text-emerald-400">#{p.dorsal}</span>
                             )}
                           </div>
                           <div className="min-w-0">
@@ -945,7 +945,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
             
             <div className="px-5 py-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
               <div>
-                <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest block font-mono">SELECCIONAR POSICIÓN DE DESTINO</span>
+                <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest block font-mono">SELECCIONAR POSICIÓN DE DESTINO</span>
                 <h3 className="text-sm font-black text-white uppercase tracking-wider font-display">
                   Alinear a {benchPlayerToPlace.nombre} {benchPlayerToPlace.apellidos}
                 </h3>
@@ -979,7 +979,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                   >
                     <div className="flex items-center gap-3">
                       {/* Circle badge representing the slot */}
-                      <span className="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-[10px] font-black font-mono text-slate-300 shrink-0 group-hover:border-blue-500 group-hover:text-blue-400">
+                      <span className="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-[10px] font-black font-mono text-slate-300 shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-400">
                         {coord.label}
                       </span>
                       <div>
@@ -997,7 +997,7 @@ export default function TacticalBoard({ players }: TacticalBoardProps) {
                         )}
                       </div>
                     </div>
-                    <span className="text-[9px] font-black uppercase text-blue-400 group-hover:text-white bg-slate-900 group-hover:bg-blue-600 px-2.5 py-1.5 rounded-lg border border-slate-800 group-hover:border-blue-500 transition-all font-mono">
+                    <span className="text-[9px] font-black uppercase text-emerald-400 group-hover:text-white bg-slate-900 group-hover:bg-emerald-600 px-2.5 py-1.5 rounded-lg border border-slate-800 group-hover:border-emerald-500 transition-all font-mono">
                       Seleccionar
                     </span>
                   </button>

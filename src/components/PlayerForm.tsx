@@ -44,7 +44,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
               onClick={() => onChange(num)}
               className={`w-7 h-7 rounded-lg text-xs font-black transition-all cursor-pointer border flex items-center justify-center ${
                 value === num
-                  ? 'bg-blue-600 text-white border-blue-500 shadow-lg shadow-blue-950 scale-110'
+                  ? 'bg-emerald-600 text-white border-emerald-500 shadow-lg shadow-emerald-950 scale-110'
                   : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white hover:bg-slate-850'
               }`}
             >
@@ -184,7 +184,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
         {/* Header */}
         <div className="px-6 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-blue-500" />
+            <Sparkles className="h-5 w-5 text-emerald-500" />
             <h2 className="text-sm font-black text-white uppercase tracking-wider font-display">
               {player ? `Editar Ficha: ${player.nombre}` : 'Inscribir Nuevo Futbolista'}
             </h2>
@@ -215,7 +215,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 placeholder="Nombre de pila"
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-medium"
               />
             </div>
 
@@ -231,7 +231,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 placeholder="Apellidos completos"
                 value={apellidos}
                 onChange={(e) => setApellidos(e.target.value)}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-medium"
               />
             </div>
 
@@ -249,7 +249,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 placeholder="1 - 99"
                 value={dorsal}
                 onChange={(e) => setDorsal(e.target.value === '' ? '' : Number(e.target.value))}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-medium"
               />
             </div>
 
@@ -264,7 +264,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 required
                 value={fechaNacimiento}
                 onChange={(e) => setFechaNacimiento(e.target.value)}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium whitespace-nowrap"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-medium whitespace-nowrap"
               />
             </div>
 
@@ -277,7 +277,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 id="demarcacion"
                 value={demarcacion}
                 onChange={(e) => setDemarcacion(e.target.value as Jugador['demarcacion'])}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-medium"
               >
                 <option value="Portero">Portero</option>
                 <option value="Defensa">Defensa</option>
@@ -295,7 +295,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 id="lateralidad"
                 value={lateralidad}
                 onChange={(e) => setLateralidad(e.target.value as Jugador['lateralidad'])}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-medium"
               >
                 <option value="Diestro">Diestro / Derecho</option>
                 <option value="Zurdo">Zurdo / Izquierdo</option>
@@ -315,7 +315,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 placeholder="Club de origen o escuadra actual"
                 value={equipo}
                 onChange={(e) => setEquipo(e.target.value)}
-                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-medium"
+                className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-medium"
               />
             </div>
           </div>
@@ -323,7 +323,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
           {/* Atributos Cuantitativos */}
           <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl space-y-3.5">
             <div className="flex items-center gap-1.5 border-b border-slate-850 pb-2">
-              <Sparkles className="h-4 w-4 text-blue-500" />
+              <Sparkles className="h-4 w-4 text-emerald-500" />
               <h3 className="text-xs font-black text-white uppercase tracking-wider font-display">
                 Ficha de Rendimiento Cuantitativo (1 al 5)
               </h3>
@@ -351,8 +351,8 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
               onClick={triggerFileBrowser}
               className={`border-2 border-dashed rounded-xl p-5 text-center flex flex-col items-center justify-center cursor-pointer transition-colors ${
                 isDragging 
-                  ? 'border-blue-500 bg-blue-950/20' 
-                  : 'border-slate-800 hover:border-blue-500 hover:bg-slate-900/50'
+                  ? 'border-emerald-500 bg-emerald-950/20' 
+                  : 'border-slate-800 hover:border-emerald-500 hover:bg-slate-900/50'
               }`}
             >
               <input
@@ -391,7 +391,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 </div>
               ) : (
                 <>
-                  <Upload className={`h-8 w-8 mb-2 ${uploading ? 'text-blue-500 animate-bounce' : 'text-slate-500'}`} />
+                  <Upload className={`h-8 w-8 mb-2 ${uploading ? 'text-emerald-500 animate-bounce' : 'text-slate-500'}`} />
                   <p className="text-xs text-slate-300 font-bold mb-1">
                     {uploading ? 'Subiendo imagen...' : 'Arrastra una foto aquí o haz clic para buscar'}
                   </p>
@@ -428,7 +428,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
                 placeholder="https://images.unsplash.com/..."
                 value={fotoJugador}
                 onChange={(e) => setFotoJugador(e.target.value)}
-                className="w-full text-xs px-3 py-2 border border-slate-850 rounded-lg focus:outline-none bg-slate-900 text-slate-200"
+                className="w-full text-xs px-3 py-2 border border-slate-850 rounded-lg focus:outline-none bg-slate-900 text-slate-205"
               />
             </div>
           </div>
@@ -444,7 +444,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
               placeholder="Cualidades tácticas, estado físico, historial de rendimiento o detalles scouts..."
               value={observaciones}
               onChange={(e) => setObservaciones(e.target.value)}
-              className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100 font-mono resize-y"
+              className="w-full text-xs px-3.5 py-3 border border-slate-850 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100 font-mono resize-y"
             />
           </div>
 
@@ -460,7 +460,7 @@ export default function PlayerForm({ player, onClose, onSave }: PlayerFormProps)
             <button
               type="submit"
               disabled={uploading}
-              className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 disabled:bg-blue-405 text-white text-xs font-black uppercase tracking-widest rounded-lg shadow-lg shadow-blue-900/40 transition-colors cursor-pointer"
+              className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:bg-emerald-405 text-white text-xs font-black uppercase tracking-widest rounded-lg shadow-lg shadow-emerald-900/40 transition-colors cursor-pointer"
             >
               {player ? 'Ac Ficha' : 'Inscribir Futbolista'}
             </button>

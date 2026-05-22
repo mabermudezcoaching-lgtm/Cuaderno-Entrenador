@@ -262,7 +262,7 @@ export default function Videoteca() {
       {/* HEADER SECTION */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-slate-950 border border-slate-850 p-6 rounded-2xl shadow-xl">
         <div className="flex items-center gap-3">
-          <div className="bg-blue-950/40 p-3 rounded-xl border border-blue-900/30 text-blue-400">
+          <div className="bg-emerald-950/40 p-3 rounded-xl border border-emerald-900/30 text-emerald-400">
             <Tv className="h-6 w-6" />
           </div>
           <div>
@@ -274,7 +274,7 @@ export default function Videoteca() {
         <button
           type="button"
           onClick={() => setIsFormOpen(true)}
-          className="inline-flex items-center justify-center gap-2 px-4.5 py-3 text-xs bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-lg shadow-blue-950/50"
+          className="inline-flex items-center justify-center gap-2 px-4.5 py-3 text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-lg shadow-emerald-950/50"
         >
           <Plus className="h-4 w-4" />
           AÑADIR ANÁLISIS
@@ -311,7 +311,7 @@ export default function Videoteca() {
                 onClick={() => setActiveTab(tab)}
                 className={`py-2 px-3.5 text-xs font-black uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
                   activeTab === tab
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-900/10'
+                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/10'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
                 }`}
               >
@@ -329,7 +329,7 @@ export default function Videoteca() {
             placeholder="Buscar por rival, título o descripción..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-950 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-200 placeholder-slate-500"
+            className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-950 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-200 placeholder-slate-500"
           />
         </div>
       </div>
@@ -398,7 +398,7 @@ export default function Videoteca() {
                 } else {
                   return (
                     <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-slate-900 border border-slate-800">
-                      <div className="bg-slate-950 p-4 rounded-full text-blue-400 border border-slate-800 mb-4">
+                      <div className="bg-slate-950 p-4 rounded-full text-emerald-400 border border-slate-800 mb-4">
                         <Video className="h-7 w-7" />
                       </div>
                       <p className="text-sm font-semibold text-white mb-2">Este enlace debe visualizarse externamente</p>
@@ -409,7 +409,7 @@ export default function Videoteca() {
                         href={playingVideo.url_video}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-500 rounded-lg cursor-pointer transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg cursor-pointer transition-colors"
                       >
                         Abrir video en nueva pestaña
                         <ExternalLink className="h-3.5 w-3.5" />
@@ -425,7 +425,7 @@ export default function Videoteca() {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5 block">EQUIPO ANALIZADO</h3>
-                  <p className="text-sm font-black text-blue-400 uppercase tracking-wide">{playingVideo.rival}</p>
+                  <p className="text-sm font-black text-emerald-400 uppercase tracking-wide">{playingVideo.rival}</p>
                 </div>
 
                 <div>
@@ -436,7 +436,7 @@ export default function Videoteca() {
                 <div>
                   <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest mb-1.5 block">NUESTROS TRABAJOS DE PREPARACIÓN</h3>
                   <div className="p-3 bg-slate-950 rounded-lg border border-slate-850 flex items-start gap-2 text-[11px] text-slate-450 leading-normal">
-                    <Info className="h-3.5 w-3.5 text-blue-500 shrink-0 mt-0.5" />
+                    <Info className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
                     <span>Se aconseja alinear el campograma correspondiente al sistema planteado contra este rival específico.</span>
                   </div>
                 </div>
@@ -451,7 +451,7 @@ export default function Videoteca() {
                   href={playingVideo.url_video}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-white transition-colors flex items-center gap-1 font-bold text-blue-400"
+                  className="hover:text-white transition-colors flex items-center gap-1 font-bold text-emerald-400"
                 >
                   Ver enlace original
                   <ExternalLink className="h-3 w-3" />
@@ -467,7 +467,7 @@ export default function Videoteca() {
       {/* VIDEOS GRID LAYOUT */}
       {isLoading ? (
         <div className="py-20 flex flex-col items-center justify-center gap-3">
-          <Film className="h-8 w-8 text-blue-500 animate-pulse" />
+          <Film className="h-8 w-8 text-emerald-500 animate-pulse" />
           <p className="text-xs text-slate-500 font-medium">Buscando reportes y videos tácticos...</p>
         </div>
       ) : filteredVideos.length === 0 ? (
@@ -496,7 +496,7 @@ export default function Videoteca() {
                   }, 150);
                 }}
                 className={`group bg-slate-950/90 border rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between ${
-                  playingVideo?.id === item.id ? 'border-blue-600 ring-1 ring-blue-600/50' : 'border-slate-850 hover:border-slate-700'
+                  playingVideo?.id === item.id ? 'border-emerald-600 ring-1 ring-emerald-600/50' : 'border-slate-850 hover:border-slate-700'
                 }`}
               >
                 
@@ -526,7 +526,7 @@ export default function Videoteca() {
                   </div>
 
                   {/* Play circle trigger overlay */}
-                  <div className="absolute z-20 bg-slate-950/80 group-hover:bg-blue-600/90 p-3 rounded-full border border-slate-800 group-hover:border-blue-500 text-blue-400 group-hover:text-white transition-all scale-95 group-hover:scale-105 duration-300 shadow-md">
+                  <div className="absolute z-20 bg-slate-950/80 group-hover:bg-emerald-600/90 p-3 rounded-full border border-slate-800 group-hover:border-emerald-500 text-emerald-400 group-hover:text-white transition-all scale-95 group-hover:scale-105 duration-300 shadow-md">
                     <Play className="h-5 w-5 fill-current ml-0.5" />
                   </div>
 
@@ -541,7 +541,7 @@ export default function Videoteca() {
                 {/* Content Card Info */}
                 <div className="p-4.5 space-y-3 flex-1 flex flex-col justify-between">
                   <div className="space-y-1.5">
-                    <h3 className="text-[13px] font-black text-white uppercase tracking-wide group-hover:text-blue-400 transition-colors line-clamp-1">{item.titulo}</h3>
+                    <h3 className="text-[13px] font-black text-white uppercase tracking-wide group-hover:text-emerald-400 transition-colors line-clamp-1">{item.titulo}</h3>
                     <p className="text-xs text-slate-400 font-sans line-clamp-2 leading-relaxed">{item.descripcion || 'Sin observaciones detalladas.'}</p>
                   </div>
 

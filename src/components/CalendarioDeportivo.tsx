@@ -298,7 +298,7 @@ export default function CalendarioDeportivo() {
       case 'Baja':
         return 'bg-emerald-950/50 text-emerald-400 border border-emerald-900/40';
       case 'Charla':
-        return 'bg-blue-950/50 text-blue-400 border border-blue-900/40';
+        return 'bg-sky-950/50 text-sky-400 border border-sky-900/40';
       case 'Preventivo':
         return 'bg-teal-950/50 text-teal-400 border border-teal-900/40';
       case 'Recuperación':
@@ -313,7 +313,7 @@ export default function CalendarioDeportivo() {
       case 'Alta': return 'bg-red-500';
       case 'Media': return 'bg-amber-500';
       case 'Baja': return 'bg-emerald-500';
-      case 'Charla': return 'bg-blue-500';
+      case 'Charla': return 'bg-sky-500';
       case 'Preventivo': return 'bg-teal-500';
       case 'Recuperación': return 'bg-purple-500';
       default: return 'bg-slate-500';
@@ -501,7 +501,7 @@ CREATE POLICY "Permitir escritura completa de calendario a autenticados" ON cale
               {currentMonthEvents.length} <span className="text-xs text-slate-500 font-normal">eventos</span>
             </span>
           </div>
-          <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-blue-400">
+          <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-emerald-400">
             <CalendarRange className="h-5 w-5" />
           </div>
         </div>
@@ -615,7 +615,7 @@ CREATE POLICY "Permitir escritura completa de calendario a autenticados" ON cale
                         key={dateStr}
                         onClick={() => setSelectedDayString(dateStr)}
                         className={`h-24 p-2 flex flex-col justify-between cursor-pointer transition-all border-slate-850/40 relative ${
-                          isToday ? 'bg-blue-955/20' : ''
+                          isToday ? 'bg-emerald-950/20' : ''
                         } ${
                           isSelected ? 'bg-slate-900 border-2 border-emerald-500/50 rounded-lg shadow-inner' : 'hover:bg-slate-900/40'
                         }`}
@@ -624,7 +624,7 @@ CREATE POLICY "Permitir escritura completa de calendario a autenticados" ON cale
                         <div className="flex items-center justify-between">
                           <span className={`text-[11px] font-mono font-bold ${
                             isToday 
-                              ? 'inline-flex h-5 w-5 rounded-full bg-blue-600 text-white items-center justify-center font-black shadow-sm' 
+                              ? 'inline-flex h-5 w-5 rounded-full bg-emerald-600 text-white items-center justify-center font-black shadow-sm' 
                               : isSelected
                               ? 'text-emerald-400 font-extrabold'
                               : 'text-slate-400'
@@ -694,7 +694,7 @@ CREATE POLICY "Permitir escritura completa de calendario a autenticados" ON cale
               <span className="h-2 w-2 rounded-full bg-teal-500" /> Preventivo
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-blue-500" /> Charla Táctica
+              <span className="h-2 w-2 rounded-full bg-sky-500" /> Charla Táctica
             </span>
             <span className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-purple-500" /> Recuperación

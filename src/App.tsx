@@ -13,7 +13,6 @@ import {
   getLocalUser, 
   supabase 
 } from './lib/supabase';
-import SupabaseConfig from './components/SupabaseConfig';
 import StatsDashboard from './components/StatsDashboard';
 import PlayerCard from './components/PlayerCard';
 import PlayerForm from './components/PlayerForm';
@@ -254,16 +253,15 @@ export default function App() {
       age--;
     }
     return age;
-  };
-  // Tag styling helper for Table positions
+  };  // Tag styling helper for Table positions
   const getPositionStyles = (pos: string) => {
     switch (pos) {
       case 'Portero':
         return 'bg-amber-950/40 text-amber-350 border border-amber-900/30';
       case 'Defensa':
-        return 'bg-blue-950/40 text-blue-300 border border-blue-900/30';
+        return 'bg-cyan-950/40 text-cyan-300 border border-cyan-900/30';
       case 'Centrocampista':
-        return 'bg-teal-950/40 text-teal-300 border border-teal-900/30';
+        return 'bg-emerald-950/40 text-emerald-300 border border-emerald-950/30';
       case 'Delantero':
         return 'bg-rose-950/40 text-rose-300 border border-rose-900/30';
       default:
@@ -279,11 +277,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           <div className="flex items-center gap-2.5">
-            <div className="bg-blue-600 p-2.5 rounded-xl text-white shadow-lg shadow-blue-900/20">
+            <div className="bg-emerald-600 p-2.5 rounded-xl text-white shadow-lg shadow-emerald-900/20">
               <Award className="h-5 w-5" />
             </div>
             <div>
-              <span className="text-[9px] font-black text-blue-400 block tracking-widest uppercase font-mono">PLANTILLA OFICIAL</span>
+              <span className="text-[9px] font-black text-emerald-400 block tracking-widest uppercase font-mono">PLANTILLA OFICIAL</span>
               <h1 className="text-sm sm:text-lg font-black tracking-tight text-white leading-tight font-display">
                 CUADERNO DE ENTRENADOR
               </h1>
@@ -294,10 +292,10 @@ export default function App() {
             {currentUser ? (
               <div className="flex items-center gap-2.5">
                 <div className="hidden sm:flex flex-col text-right">
-                  <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none font-mono">Cuerpo Técnico</span>
+                  <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest leading-none font-mono">Cuerpo Técnico</span>
                   <span className="text-xs text-slate-400 truncate max-w-40 font-bold">{currentUser.email}</span>
                 </div>
-                <div className="bg-slate-900 text-blue-400 p-2 rounded-xl border border-slate-800" title="Sesión activa">
+                <div className="bg-slate-900 text-emerald-400 p-2 rounded-xl border border-slate-800" title="Sesión activa">
                   <UserCheck className="h-4 w-4" />
                 </div>
                 <button
@@ -313,9 +311,9 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setIsAuthOpen(true)}
-                className="bg-slate-900 hover:bg-slate-850 text-slate-200 text-xs font-black uppercase tracking-wider rounded-xl px-4 py-2.5 border border-slate-800 transition-colors cursor-pointer flex items-center gap-1.5"
+                className="bg-slate-900 hover:bg-slate-850 text-slate-205 text-xs font-black uppercase tracking-wider rounded-xl px-4 py-2.5 border border-slate-800 transition-colors cursor-pointer flex items-center gap-1.5"
               >
-                <LogIn className="h-4 w-4 text-blue-500" />
+                <LogIn className="h-4 w-4 text-emerald-500" />
                 Acceso Admin
               </button>
             )}
@@ -327,15 +325,12 @@ export default function App() {
       {/* 2. Cuerpo Central */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         
-        {/* Supabase connection guide block */}
-        <SupabaseConfig />
-
         {/* Visual Analytics Widgets */}
-        {viewType !== 'videoteca' && viewType !== 'informes' && viewType !== 'calendario' && <StatsDashboard players={players} />}
+        {(viewType === 'grid' || viewType === 'table') && <StatsDashboard players={players} />}
 
         {/* 3. Panel Filtros y Acciones */}
         <div className="bg-slate-950 border border-slate-850 rounded-2xl p-4 sm:p-5 mb-8 shadow-2xl flex flex-col gap-4">
-          {viewType !== 'videoteca' && viewType !== 'informes' && viewType !== 'calendario' && (
+          {(viewType === 'grid' || viewType === 'table') && (
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               
               {/* Buscador */}
@@ -346,7 +341,7 @@ export default function App() {
                   placeholder="Buscar jugador por nombre, dorsal o equipo..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full text-xs pl-10 pr-4 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-100"
+                  className="w-full text-xs pl-10 pr-4 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-100"
                 />
               </div>
 
@@ -357,7 +352,7 @@ export default function App() {
                   <select
                     value={selectedPosition}
                     onChange={(e) => setSelectedPosition(e.target.value)}
-                    className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205"
+                    className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-205"
                     aria-label="Filter by Position"
                   >
                     <option value="Todas">Posiciones (Todas)</option>
@@ -372,7 +367,7 @@ export default function App() {
                   <select
                     value={selectedLaterality}
                     onChange={(e) => setSelectedLaterality(e.target.value)}
-                    className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-900 text-slate-205"
+                    className="w-full text-xs px-3.5 py-3.5 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-900 text-slate-205"
                     aria-label="Filter by Laterality"
                   >
                     <option value="Todas">Dominancia (Todas)</option>
@@ -387,47 +382,35 @@ export default function App() {
             </div>
           )}
 
-          <div className="border-t border-slate-900 pt-4 flex flex-wrap items-center justify-between gap-3 shrink-0">
+          <div className={`flex flex-wrap items-center justify-between gap-3 shrink-0 ${(viewType === 'grid' || viewType === 'table') ? 'border-t border-slate-900 pt-4' : ''}`}>
             
             {/* Toggles Vista e Inscribir */}
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Diseño de Vista:</span>
               <div className="bg-slate-900 rounded-lg p-0.5 flex items-center border border-slate-850">
                 <button
                   type="button"
                   onClick={() => setViewType('grid')}
-                  className={`p-1.5 rounded-md transition-all cursor-pointer ${
-                    viewType === 'grid' 
-                      ? 'bg-blue-600 text-white font-bold' 
+                  className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
+                    (viewType === 'grid' || viewType === 'table') 
+                      ? 'bg-emerald-600 text-white font-bold' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
-                  title="Vista en cuadricula"
+                  title="Plantilla de futbolistas"
                 >
-                  <Grid className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setViewType('table')}
-                  className={`p-1.5 rounded-md transition-all cursor-pointer ${
-                    viewType === 'table' 
-                      ? 'bg-blue-600 text-white font-bold' 
-                      : 'text-slate-500 hover:text-slate-300'
-                  }`}
-                  title="Vista tabular de lista"
-                >
-                  <List className="h-4 w-4" />
+                  <Users className="h-3.5 w-3.5 text-emerald-400 font-bold" />
+                  <span>Plantilla</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setViewType('campograma')}
                   className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
                     viewType === 'campograma' 
-                      ? 'bg-blue-600 text-white font-bold' 
+                      ? 'bg-emerald-600 text-white font-bold' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                   title="Pizarra táctica y alineación de campograma"
                 >
-                  <Map className="h-3.5 w-3.5 text-blue-400" />
+                  <Map className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Campograma</span>
                 </button>
                 <button
@@ -435,12 +418,12 @@ export default function App() {
                   onClick={() => setViewType('videoteca')}
                   className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
                     viewType === 'videoteca' 
-                      ? 'bg-blue-600 text-white font-bold' 
+                      ? 'bg-emerald-600 text-white font-bold' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                   title="Videoteca táctica del equipo"
                 >
-                  <Tv className="h-3.5 w-3.5 text-blue-400" />
+                  <Tv className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Videoteca</span>
                 </button>
                 <button
@@ -448,12 +431,12 @@ export default function App() {
                   onClick={() => setViewType('informes')}
                   className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
                     viewType === 'informes' 
-                      ? 'bg-blue-600 text-white font-bold' 
+                      ? 'bg-emerald-600 text-white font-bold' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                   title="Informes post-partido del equipo"
                 >
-                  <FileText className="h-3.5 w-3.5 text-blue-400" />
+                  <FileText className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Informes</span>
                 </button>
                 <button
@@ -461,20 +444,47 @@ export default function App() {
                   onClick={() => setViewType('calendario')}
                   className={`p-1.5 px-2.5 rounded-md transition-all cursor-pointer flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider ${
                     viewType === 'calendario' 
-                      ? 'bg-blue-600 text-white font-bold' 
+                      ? 'bg-emerald-600 text-white font-bold' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                   title="Calendario y agenda de carga"
                 >
-                  <Calendar className="h-3.5 w-3.5 text-blue-400" />
+                  <Calendar className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Calendario</span>
                 </button>
               </div>
             </div>
 
-            <div className="flex gap-2.5">
-              {viewType !== 'videoteca' && viewType !== 'informes' && viewType !== 'calendario' && (
+            <div className="flex items-center gap-2.5">
+              {(viewType === 'grid' || viewType === 'table') && (
                 <>
+                  <div className="bg-slate-900 rounded-lg p-0.5 flex items-center border border-slate-850">
+                    <button
+                      type="button"
+                      onClick={() => setViewType('grid')}
+                      className={`p-1.5 rounded-md transition-all cursor-pointer ${
+                        viewType === 'grid' 
+                          ? 'bg-slate-800 text-emerald-405' 
+                          : 'text-slate-500 hover:text-slate-400'
+                      }`}
+                      title="Vista Cuadrícula"
+                    >
+                      <Grid className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewType('table')}
+                      className={`p-1.5 rounded-md transition-all cursor-pointer ${
+                        viewType === 'table' 
+                          ? 'bg-slate-800 text-emerald-405' 
+                          : 'text-slate-500 hover:text-slate-400'
+                      }`}
+                      title="Vista Lista"
+                    >
+                      <List className="h-4 w-4" />
+                    </button>
+                  </div>
+
                   {(searchQuery || selectedPosition !== 'Todas' || selectedLaterality !== 'Todas') && (
                     <button
                       type="button"
@@ -489,7 +499,7 @@ export default function App() {
                   <button
                     type="button"
                     onClick={handleAddClick}
-                    className="inline-flex items-center gap-1.5 text-xs text-white bg-blue-600 hover:bg-blue-500 rounded-xl px-4 py-2.5 font-black uppercase tracking-wider transition-colors shadow-lg shadow-blue-900/10 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl px-4 py-2.5 font-black uppercase tracking-wider transition-colors shadow-lg shadow-emerald-900/10 cursor-pointer"
                   >
                     <Plus className="h-4 w-4" />
                     INSCRIBIR FUTBOLISTA
@@ -504,7 +514,7 @@ export default function App() {
         {/* 4. Contenido de Plantilla */}
         {loading ? (
           <div className="h-64 flex flex-col items-center justify-center gap-2">
-            <Loader2 className="h-8 w-8 text-blue-505 animate-spin" />
+            <Loader2 className="h-8 w-8 text-emerald-500 animate-spin" />
             <p className="text-xs text-slate-500 font-medium animate-pulse">Cargando futbolistas inscritos...</p>
           </div>
         ) : viewType === 'campograma' ? (
@@ -518,7 +528,7 @@ export default function App() {
         ) : filteredPlayers.length === 0 ? (
           <div className="bg-slate-950 border border-slate-850 h-64 flex flex-col items-center justify-center p-6 text-center rounded-2xl shadow-xl">
             <div className="bg-slate-900 p-3.5 rounded-full text-slate-500 mb-3.5 border border-slate-800">
-              <Users className="h-6 w-6 text-blue-500" id="empty-state-icon" />
+              <Users className="h-6 w-6 text-emerald-500" id="empty-state-icon" />
             </div>
             <h3 className="font-extrabold text-white text-sm uppercase tracking-wider font-display">Ningún jugador coincide</h3>
             <p className="text-xs text-slate-400 mt-1 max-w-sm">
@@ -528,7 +538,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={clearFilters}
-                className="mt-4 text-xs font-black text-blue-400 hover:text-blue-300 uppercase tracking-widest cursor-pointer"
+                className="mt-4 text-xs font-black text-emerald-400 hover:text-emerald-300 uppercase tracking-widest cursor-pointer"
               >
                 Restablecer búsqueda
               </button>
@@ -610,8 +620,8 @@ export default function App() {
                       {/* Atributos en tabla */}
                       <td className="p-3.5 text-[10px] whitespace-nowrap">
                         <div className="flex flex-col gap-0.5 font-mono">
-                          <span>Vel: <strong className="text-blue-400">{player.velocidad ?? 3}</strong> | Téc: <strong className="text-blue-400">{player.tecnica ?? 3}</strong></span>
-                          <span>Def: <strong className="text-blue-400">{player.defensa ?? 3}</strong> | Act: <strong className="text-blue-400">{player.actitud ?? 3}</strong></span>
+                          <span>Vel: <strong className="text-emerald-400">{player.velocidad ?? 3}</strong> | Téc: <strong className="text-emerald-400">{player.tecnica ?? 3}</strong></span>
+                          <span>Def: <strong className="text-emerald-400">{player.defensa ?? 3}</strong> | Act: <strong className="text-emerald-400">{player.actitud ?? 3}</strong></span>
                         </div>
                       </td>
                       {/* Botones de Vista previa y PDF */}
@@ -620,7 +630,7 @@ export default function App() {
                           <button
                             type="button"
                             onClick={() => setPreviewPlayer(player)}
-                            className="text-blue-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg p-1.5 transition-colors cursor-pointer border border-slate-800"
+                            className="text-emerald-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-lg p-1.5 transition-colors cursor-pointer border border-slate-800"
                             title="Ver Ficha"
                           >
                             <Eye className="h-3.5 w-3.5" />
@@ -641,7 +651,7 @@ export default function App() {
                             <button
                               type="button"
                               onClick={() => handleEditClick(player)}
-                              className="text-blue-300 hover:text-white bg-slate-900 hover:bg-slate-800 rounded p-1.5 transition-colors cursor-pointer border border-slate-850"
+                              className="text-emerald-400 hover:text-white bg-slate-900 hover:bg-slate-800 rounded p-1.5 transition-colors cursor-pointer border border-slate-850"
                               title="Editar Ficha"
                             >
                               <List className="h-3.5 w-3.5" />
@@ -714,7 +724,7 @@ export default function App() {
               {/* Header */}
               <div className="px-5 py-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                  <Award className="h-5 w-5 text-blue-400" />
+                  <Award className="h-5 w-5 text-emerald-400" />
                   <span className="text-xs font-black text-slate-300 uppercase tracking-widest font-mono">
                     Vista Previa de la Ficha
                   </span>
@@ -745,13 +755,13 @@ export default function App() {
                         }}
                       />
                     ) : (
-                      <span className="text-2xl font-black text-blue-400">
+                      <span className="text-2xl font-black text-emerald-400">
                         #{previewPlayer.dorsal}
                       </span>
                     )}
                   </div>
                   <div className="text-center sm:text-left space-y-1">
-                    <span className="inline-flex px-2 py-0.5 rounded bg-blue-950/50 border border-blue-900/40 text-blue-400 text-[10px] uppercase font-black tracking-widest font-mono">
+                    <span className="inline-flex px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-900/40 text-emerald-400 text-[10px] uppercase font-black tracking-widest font-mono">
                       #{previewPlayer.dorsal} - {previewPlayer.demarcacion}
                     </span>
                     <h2 className="text-xl font-black text-white leading-tight font-display">
@@ -766,22 +776,22 @@ export default function App() {
                 {/* Facts Grid */}
                 <div className="grid grid-cols-2 gap-4 bg-slate-950/40 border border-slate-855 p-4 rounded-xl text-xs font-medium">
                   <div>
-                    <span className="text-slate-500 block text-[9px] uppercase tracking-wider font-mono">Nacimiento / Edad</span>
-                    <span className="text-slate-200">{previewPlayer.fecha_nacimiento}</span>
+                    <span className="text-slate-550 block text-[9px] uppercase tracking-wider font-mono">Nacimiento / Edad</span>
+                    <span className="text-slate-205">{previewPlayer.fecha_nacimiento}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block text-[9px] uppercase tracking-wider font-mono">Pie dominante</span>
-                    <span className="text-blue-400 font-bold uppercase">{previewPlayer.lateralidad}</span>
+                    <span className="text-slate-550 block text-[9px] uppercase tracking-wider font-mono">Pie dominant</span>
+                    <span className="text-emerald-400 font-bold uppercase">{previewPlayer.lateralidad}</span>
                   </div>
                   <div className="col-span-2 border-t border-slate-850/60 pt-2.5 mt-1.5">
-                    <span className="text-slate-500 block text-[9px] uppercase tracking-wider font-mono">Identificador de Ficha</span>
-                    <span className="font-mono text-[10px] text-slate-400">{previewPlayer.id}</span>
+                    <span className="text-slate-550 block text-[9px] uppercase tracking-wider font-mono">Identificador de Ficha</span>
+                    <span className="font-mono text-[10px] text-slate-450">{previewPlayer.id}</span>
                   </div>
                 </div>
 
                 {/* Technical / Physical stats attributes (Quantitative Bars) */}
                 <div className="space-y-2.5">
-                  <span className="text-[10px] font-black tracking-widest uppercase text-slate-405 font-mono block">
+                  <span className="text-[10px] font-black tracking-widest uppercase text-slate-400 font-mono block">
                     Atributos y Habilidades
                   </span>
                   
@@ -796,7 +806,7 @@ export default function App() {
                     <div key={key} className="space-y-1 bg-slate-950/20 p-2 border border-slate-850/30 rounded-xl">
                       <div className="flex justify-between items-center text-xs font-mono">
                         <span className="text-slate-300 font-bold text-[11px]">{attr.label}</span>
-                        <span className="text-blue-400 font-black">{attr.val} / 5</span>
+                        <span className="text-emerald-400 font-black">{attr.val} / 5</span>
                       </div>
                       
                       {/* Visual segment progress bar (representing 5 notches) */}
@@ -806,7 +816,7 @@ export default function App() {
                             key={notch}
                             className={`h-full rounded transition-all duration-300 ${
                               notch <= attr.val
-                                ? 'bg-gradient-to-r from-blue-600 to-blue-500 shadow-sm shadow-blue-500/10'
+                                ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 shadow-sm shadow-emerald-500/10'
                                 : 'bg-slate-800'
                             }`}
                           />
@@ -819,7 +829,7 @@ export default function App() {
                 {/* Observations text */}
                 {previewPlayer.observaciones && (
                   <div className="bg-slate-950/60 border border-slate-850 p-4 rounded-xl">
-                    <span className="text-[9px] uppercase font-black text-slate-500 tracking-wider block font-mono mb-1.5">
+                    <span className="text-[9px] uppercase font-black text-slate-550 tracking-wider block font-mono mb-1.5">
                       Observaciones de Seguimiento
                     </span>
                     <p className="text-xs text-slate-300 italic font-mono leading-relaxed">
@@ -834,7 +844,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => exportPlayerToPdf(previewPlayer)}
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-bold tracking-wider text-white bg-blue-600 hover:bg-blue-500 rounded-xl py-3 border border-blue-500 hover:shadow-lg transition-colors cursor-pointer select-none uppercase"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-bold tracking-wider text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl py-3 border border-emerald-500 hover:shadow-lg transition-colors cursor-pointer select-none uppercase"
                 >
                   <FileDown className="h-4 w-4" />
                   Descargar Ficha PDF

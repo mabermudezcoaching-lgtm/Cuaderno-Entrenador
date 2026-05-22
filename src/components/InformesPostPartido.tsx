@@ -529,7 +529,7 @@ export default function InformesPostPartido() {
       {/* TITLE BOARD */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-slate-950 border border-slate-850 p-6 rounded-2xl shadow-xl">
         <div className="flex items-center gap-3">
-          <div className="bg-blue-950/40 p-3 rounded-xl border border-blue-900/30 text-blue-400">
+          <div className="bg-emerald-950/40 p-3 rounded-xl border border-emerald-900/30 text-emerald-400">
             <FileText className="h-6 w-6" />
           </div>
           <div>
@@ -544,7 +544,7 @@ export default function InformesPostPartido() {
             fetchData();
             setIsFormOpen(true);
           }}
-          className="inline-flex items-center justify-center gap-2 px-4.5 py-3 text-xs bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-lg shadow-blue-950/50"
+          className="inline-flex items-center justify-center gap-2 px-4.5 py-3 text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-lg shadow-emerald-955/50"
         >
           <Plus className="h-4 w-4" />
           NUEVO INFORME
@@ -571,11 +571,11 @@ export default function InformesPostPartido() {
           onClick={() => setActiveTab('historico')}
           className={`flex items-center gap-2 px-5 py-3.5 border-b-2 font-black uppercase text-xs tracking-wider transition-all cursor-pointer ${
             activeTab === 'historico'
-              ? 'border-blue-550 text-white bg-slate-900/40'
+              ? 'border-emerald-500 text-white bg-slate-900/40'
               : 'border-transparent text-slate-500 hover:text-slate-350'
           }`}
         >
-          <FileText className="h-4 w-4 text-blue-400" />
+          <FileText className="h-4 w-4 text-emerald-400" />
           Historial de Actas
         </button>
         <button
@@ -583,7 +583,7 @@ export default function InformesPostPartido() {
           onClick={() => setActiveTab('temporada')}
           className={`flex items-center gap-2 px-5 py-3.5 border-b-2 font-black uppercase text-xs tracking-wider transition-all cursor-pointer ${
             activeTab === 'temporada'
-              ? 'border-blue-550 text-white bg-slate-900/40'
+              ? 'border-emerald-500 text-white bg-slate-900/40'
               : 'border-transparent text-slate-500 hover:text-slate-350'
           }`}
         >
@@ -599,7 +599,7 @@ export default function InformesPostPartido() {
           {/* SEARCH & STATS COUNTER */}
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest bg-slate-950 px-3.5 py-2 border border-slate-850 rounded-lg">
-              Histórico de partidos guardados: <strong className="text-blue-400 font-mono font-black">{filteredReports.length}</strong>
+              Histórico de partidos guardados: <strong className="text-emerald-400 font-mono font-black">{filteredReports.length}</strong>
             </span>
 
             <div className="relative w-full md:w-80">
@@ -609,7 +609,7 @@ export default function InformesPostPartido() {
                 placeholder="Buscar por equipo, campo o notas..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-950 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-200 placeholder-slate-500"
+                className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-950 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-200 placeholder-slate-500"
               />
             </div>
           </div>
@@ -655,7 +655,7 @@ export default function InformesPostPartido() {
                   
                   <div className="p-4 bg-slate-900 border border-slate-850 rounded-xl space-y-3.5 shadow-inner">
                     <div className="flex items-center gap-2.5 text-xs text-slate-400">
-                      <MapPin className="h-4 w-4 text-blue-400 shrink-0" />
+                      <MapPin className="h-4 w-4 text-emerald-400 shrink-0" />
                       <div>
                         <label className="text-[9px] text-slate-500 font-mono font-bold block uppercase">ESTADIO / INSTALACIÓN</label>
                         <span className="font-bold text-white uppercase text-[11px]">{viewingReport.campo}</span>
@@ -663,7 +663,7 @@ export default function InformesPostPartido() {
                     </div>
 
                     <div className="flex items-center gap-2.5 text-xs text-slate-400">
-                      <Calendar className="h-4 w-4 text-blue-400 shrink-0" />
+                      <Calendar className="h-4 w-4 text-emerald-400 shrink-0" />
                       <div>
                         <label className="text-[9px] text-slate-500 font-mono font-bold block uppercase">FECHA DEL ENCUENTRO</label>
                         <span className="font-bold text-white uppercase text-[11px]">{new Date(viewingReport.fecha).toLocaleDateString('es-ES', { dateStyle: 'long' })}</span>
@@ -671,7 +671,7 @@ export default function InformesPostPartido() {
                     </div>
 
                     <div className="flex items-center gap-2.5 text-xs text-slate-400">
-                      <Clock className="h-4 w-4 text-blue-400 shrink-0" />
+                      <Clock className="h-4 w-4 text-emerald-400 shrink-0" />
                       <div>
                         <label className="text-[9px] text-slate-500 font-mono font-bold block uppercase">HORA PREVISTA</label>
                         <span className="font-bold text-white uppercase text-[11px] font-mono">{viewingReport.hora} hs</span>
@@ -703,7 +703,7 @@ export default function InformesPostPartido() {
                 <div className="md:col-span-2 p-5 bg-slate-900 border border-slate-850 rounded-xl flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex items-center gap-1.5 border-b border-slate-800 pb-2.5">
-                      <Award className="h-4 w-4 text-blue-400" />
+                      <Award className="h-4 w-4 text-emerald-400" />
                       <span className="text-[10px] text-slate-400 font-mono font-black uppercase tracking-widest">RESUMEN TÁCTICO DE SEGUIMIENTO</span>
                     </div>
                     <p className="text-xs text-slate-250 leading-relaxed whitespace-pre-wrap font-sans">
@@ -722,7 +722,7 @@ export default function InformesPostPartido() {
               {/* Stats list of squad */}
               <div className="px-6 pb-6 space-y-3">
                 <div className="flex items-center gap-1.5 border-b border-slate-850 pb-2">
-                  <Activity className="h-4.5 w-4.5 text-blue-400" />
+                  <Activity className="h-4.5 w-4.5 text-emerald-400" />
                   <span className="text-xs text-white uppercase tracking-wider font-bold">Rendimientos Individuales de la Plantilla ({viewingReport.rendimientos?.length || 0})</span>
                 </div>
 
@@ -774,7 +774,7 @@ export default function InformesPostPartido() {
                           </td>
                           <td className="py-2.5 px-4 text-center font-mono font-black">
                             {rend.asistencias > 0 ? (
-                              <span className="text-blue-400 bg-blue-950/30 px-2 py-0.5 rounded border border-blue-900/30">👟 {rend.asistencias} asis</span>
+                              <span className="text-sky-400 bg-sky-950/30 px-2 py-0.5 rounded border border-sky-900/30">👟 {rend.asistencias} asis</span>
                             ) : (
                               <span className="text-slate-600">-</span>
                             )}
@@ -784,7 +784,7 @@ export default function InformesPostPartido() {
                               (rend.valoracion || 6.0) >= 8.0 
                                 ? 'bg-emerald-950/40 text-emerald-400 border border-emerald-900/30'
                                 : (rend.valoracion || 6.0) >= 6.0
-                                ? 'bg-blue-950/40 text-blue-400 border border-blue-900/30'
+                                ? 'bg-sky-950/40 text-sky-400 border border-sky-900/30'
                                 : 'bg-rose-950/40 text-rose-455 border border-rose-900/30'
                             }`}>
                               {(rend.valoracion || 6.0).toFixed(1)}
@@ -803,7 +803,7 @@ export default function InformesPostPartido() {
           {/* HISTORIC REPORTS CARDS LIST */}
           {isLoading ? (
             <div className="py-20 flex flex-col items-center justify-center gap-3">
-              <FileText className="h-8 w-8 text-blue-500 animate-pulse" />
+              <FileText className="h-8 w-8 text-emerald-500 animate-pulse" />
               <p className="text-xs text-slate-500 font-medium font-mono">Cargando histórico de informes deportivos...</p>
             </div>
           ) : filteredReports.length === 0 ? (
@@ -831,7 +831,7 @@ export default function InformesPostPartido() {
                     }, 150);
                   }}
                   className={`group bg-slate-950 border rounded-2xl p-5 shadow-lg hover:shadow-2xl hover:border-slate-700 transition-all duration-300 relative flex flex-col justify-between cursor-pointer ${
-                    viewingReport?.id === report.id ? 'border-blue-600 ring-2 ring-blue-600/20 bg-slate-900/30' : 'border-slate-850'
+                    viewingReport?.id === report.id ? 'border-emerald-600 ring-2 ring-emerald-600/20 bg-slate-900/30' : 'border-slate-850'
                   }`}
                 >
                   
@@ -859,7 +859,7 @@ export default function InformesPostPartido() {
                     </div>
 
                     <div className="space-y-1">
-                      <h3 className="text-sm font-black text-white group-hover:text-blue-400 transition-colors uppercase tracking-wider">
+                      <h3 className="text-sm font-black text-white group-hover:text-emerald-400 transition-colors uppercase tracking-wider">
                         {report.equipo_local} <span className="text-slate-500 text-xs font-normal">vs</span> {report.equipo_visitante}
                       </h3>
                       <div className="flex items-center gap-1 text-[10px] text-slate-400">
@@ -885,7 +885,7 @@ export default function InformesPostPartido() {
                               </span>
                             )}
                             {totalAsistencias > 0 && (
-                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-blue-950/30 text-blue-300 text-[9px] font-mono border border-blue-900/30 uppercase">
+                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-sky-950/30 text-sky-300 text-[9px] font-mono border border-sky-900/30 uppercase">
                                 <strong>👟 {totalAsistencias}</strong> Asistencias
                               </span>
                             )}
@@ -899,7 +899,7 @@ export default function InformesPostPartido() {
 
                   {/* Action row footer */}
                   <div className="mt-4.5 pt-3.5 border-t border-slate-850/60 flex items-center justify-between text-[10px] text-slate-500 font-mono">
-                    <span className="text-[10px] text-blue-500 font-black uppercase tracking-wider group-hover:underline">
+                    <span className="text-[10px] text-emerald-500 font-black uppercase tracking-wider group-hover:underline">
                       Ver Ficha del Informe →
                     </span>
 
@@ -1007,7 +1007,7 @@ export default function InformesPostPartido() {
 
             {/* Máximo Asistente */}
             <div className="bg-slate-950 border border-slate-850 p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32 shadow-lg">
-              <div className="absolute right-2.5 top-2.5 bg-blue-950/40 border border-blue-900/30 p-2 rounded-xl text-blue-400">
+              <div className="absolute right-2.5 top-2.5 bg-sky-950/40 border border-sky-900/30 p-2 rounded-xl text-sky-400 font-bold">
                 <TrendingUp className="h-5 w-5" />
               </div>
               <div className="space-y-0.5">
@@ -1019,7 +1019,7 @@ export default function InformesPostPartido() {
                   Visión y pases magistrales
                 </span>
               </div>
-              <div className="text-xl font-mono font-black text-blue-400">
+              <div className="text-xl font-mono font-black text-sky-400">
                 {assistantLeader && assistantLeader.asistencias_totales > 0 ? `${assistantLeader.asistencias_totales} asist.` : '-'}
               </div>
             </div>
@@ -1048,7 +1048,7 @@ export default function InformesPostPartido() {
           {/* DUMP CONTROL ACTION BOARD */}
           <div className="bg-slate-950 border border-slate-850 rounded-2xl p-5 shadow-lg flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-5">
             <div className="space-y-1">
-              <span className="inline-flex px-2 py-0.5 text-[8px] font-bold font-mono text-blue-400 bg-blue-950/40 border border-blue-900/40 rounded-md uppercase">
+              <span className="inline-flex px-2 py-0.5 text-[8px] font-bold font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-900/40 rounded-md uppercase">
                 Base de Datos y Volcado
               </span>
               <h3 className="text-sm font-black text-white uppercase tracking-wider">
@@ -1076,7 +1076,7 @@ export default function InformesPostPartido() {
             {/* Header / Table Filters */}
             <div className="p-5 border-b border-slate-850/80 bg-slate-900/40 flex flex-col sm:flex-row divide-y sm:divide-y-0 divide-slate-850 justify-between items-stretch sm:items-center gap-4">
               <div className="flex items-center gap-2">
-                <SlidersHorizontal className="h-4.5 w-4.5 text-blue-400" />
+                <SlidersHorizontal className="h-4.5 w-4.5 text-emerald-400" />
                 <span className="text-xs font-bold text-white uppercase tracking-wider">Tabla de Rendimiento Resumen ({seasonSummaries.length} Jugadores)</span>
               </div>
 
@@ -1087,7 +1087,7 @@ export default function InformesPostPartido() {
                   placeholder="Filtrar por nombre de futbolista..."
                   value={searchResumen}
                   onChange={(e) => setSearchResumen(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-950 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-200 placeholder-slate-550"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-950 border border-slate-850 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-200 placeholder-slate-550"
                 />
               </div>
             </div>
@@ -1188,7 +1188,7 @@ export default function InformesPostPartido() {
 
                           <td className="py-3.5 px-4 text-center">
                             {summary.asistencias_totales > 0 ? (
-                              <span className="font-bold text-blue-400 bg-blue-955/35 px-2 py-0.5 rounded border border-blue-900/40">👟 {summary.asistencias_totales}</span>
+                              <span className="font-bold text-sky-400 bg-sky-955/35 px-2 py-0.5 rounded border border-sky-900/40">👟 {summary.asistencias_totales}</span>
                             ) : (
                               <span>-</span>
                             )}
@@ -1198,7 +1198,7 @@ export default function InformesPostPartido() {
                             {summary.tarjetas_amarillas > 0 ? (
                               <span className="text-yellow-350 bg-yellow-950/20 border border-yellow-900/50 px-1.5 py-0.5 rounded text-[10px]">{summary.tarjetas_amarillas}</span>
                             ) : (
-                              <span className="text-slate-650">-</span>
+                              <span className="text-slate-655">-</span>
                             )}
                           </td>
 
@@ -1215,7 +1215,7 @@ export default function InformesPostPartido() {
                               summary.valoracion_media >= 8.0 
                                 ? 'bg-emerald-955/40 text-emerald-300 border border-emerald-900/40 animate-pulse'
                                 : summary.valoracion_media >= 6.5
-                                ? 'bg-blue-955/40 text-blue-300 border border-blue-900/40'
+                                ? 'bg-sky-955/40 text-sky-400 border border-sky-900/40'
                                 : summary.valoracion_media > 0 
                                 ? 'bg-rose-955/40 text-rose-300 border border-rose-900/40'
                                 : 'bg-slate-900 text-slate-600'
@@ -1246,7 +1246,7 @@ export default function InformesPostPartido() {
             
             <div className="px-6 py-4 bg-slate-950 border-b border-slate-850 flex justify-between items-center shrink-0">
               <div>
-                <span className="text-[9px] font-mono font-bold text-blue-400 uppercase tracking-widest block font-bold">FICHA TÉCNICA OFICIAL</span>
+                <span className="text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-widest block font-bold">FICHA TÉCNICA OFICIAL</span>
                 <h3 className="text-sm font-black text-white uppercase tracking-wider font-display">Redactar Informe Post-Partido</h3>
               </div>
               <button
@@ -1270,7 +1270,7 @@ export default function InformesPostPartido() {
                     placeholder="Ej: Nuestra Plantilla F.C."
                     value={localTeam}
                     onChange={(e) => setLocalTeam(e.target.value)}
-                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-950 text-slate-100 placeholder-slate-600 font-bold"
+                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-950 text-slate-100 placeholder-slate-600 font-bold"
                   />
                 </div>
 
@@ -1282,7 +1282,7 @@ export default function InformesPostPartido() {
                     placeholder="Ej: C.D. Lugo B"
                     value={visitorTeam}
                     onChange={(e) => setVisitorTeam(e.target.value)}
-                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-950 text-slate-100 placeholder-slate-600 font-bold"
+                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-950 text-slate-100 placeholder-slate-600 font-bold"
                   />
                 </div>
               </div>
@@ -1296,7 +1296,7 @@ export default function InformesPostPartido() {
                     placeholder="Ej: Ciudad Deportiva Riazor"
                     value={pitch}
                     onChange={(e) => setPitch(e.target.value)}
-                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-950 text-slate-100 placeholder-slate-600"
+                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-950 text-slate-100 placeholder-slate-600"
                   />
                 </div>
 
@@ -1307,7 +1307,7 @@ export default function InformesPostPartido() {
                     required
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-950 text-slate-100"
+                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-950 text-slate-100"
                   />
                 </div>
 
@@ -1318,7 +1318,7 @@ export default function InformesPostPartido() {
                     required
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-950 text-slate-100"
+                    className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-950 text-slate-100"
                   />
                 </div>
               </div>
@@ -1358,14 +1358,14 @@ export default function InformesPostPartido() {
                   placeholder="Escribe un breve resumen del transcurso, problemas, aciertos defensivos, goles destacados o aspectos motivacionales de coaching..."
                   value={summary}
                   onChange={(e) => setSummary(e.target.value)}
-                  className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-950 text-slate-100 placeholder-slate-605 resize-none font-sans"
+                  className="w-full text-xs px-3 py-2.5 border border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-950 text-slate-100 placeholder-slate-605 resize-none font-sans"
                 />
               </div>
 
               {/* Individual Players List - Editable Inline Sub-Grid */}
               <div className="space-y-2">
                 <div className="border-b border-slate-800 pb-1 flex justify-between items-center">
-                  <span className="text-[10px] font-mono font-black text-blue-400 uppercase tracking-widest block font-bold">DETERMINAR RENDIMIENTO DE LA PLANTILLA</span>
+                  <span className="text-[10px] font-mono font-black text-emerald-400 uppercase tracking-widest block font-bold">DETERMINAR RENDIMIENTO DE LA PLANTILLA</span>
                   <span className="text-[9px] text-slate-500 font-mono uppercase font-bold">Futbolistas listados: {squadPlayers.length}</span>
                 </div>
 
@@ -1460,7 +1460,7 @@ export default function InformesPostPartido() {
                                   min="0"
                                   value={stats.asistencias}
                                   onChange={(e) => handleStatChange(player.id, 'asistencias', Math.max(0, parseInt(e.target.value) || 0))}
-                                  className="w-12 text-[10px] px-1 py-1 text-center border border-slate-850 bg-slate-950 rounded outline-none font-black text-blue-400"
+                                  className="w-12 text-[10px] px-1 py-1 text-center border border-slate-850 bg-slate-950 rounded outline-none font-black text-sky-400"
                                 />
                               </td>
 
@@ -1500,7 +1500,7 @@ export default function InformesPostPartido() {
               <button
                 type="submit"
                 disabled={isSubmitLoading}
-                className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs uppercase font-black tracking-wider rounded-lg cursor-pointer transition-all disabled:opacity-50 inline-flex items-center gap-1.5"
+                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs uppercase font-black tracking-wider rounded-lg cursor-pointer transition-all disabled:opacity-50 inline-flex items-center gap-1.5"
               >
                 {isSubmitLoading ? 'Guardando...' : 'Crear Acta de Partido'}
               </button>
@@ -1520,7 +1520,7 @@ function ChevronUpDownArrow({ field, activeField, isAsc }: { field: string; acti
     return <span className="text-[8px] text-slate-600 group-hover:text-slate-400 select-none">⇅</span>;
   }
   return (
-    <span className="text-[10px] text-blue-400 font-bold select-none">
+    <span className="text-[10px] text-emerald-400 font-bold select-none">
       {isAsc ? '▲' : '▼'}
     </span>
   );
